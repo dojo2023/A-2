@@ -11,7 +11,11 @@
 <%@ include file = "/header.jsp" %>
 <div id = "alert">通知<input type="checkbox"></div>
 <div id = "timer"><div id = "timer_img"></div><div id = "timer_text"></div></div>
-<div id = "search_position"><input type="submit" value="位置情報検索"></div>
+<div id = "search_position">
+<form action="/syuudeen/HomeServlet" method="POST">
+<input type="submit" value="位置情報検索">
+</form>
+</div>
 <div id = "plan"><table></table></div>
 </body>
 </html>
