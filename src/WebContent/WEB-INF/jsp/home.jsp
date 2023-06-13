@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="/syuudeen/css/home.css">
 </head>
 <body>
 <%@ include file = "/header.jsp" %>
