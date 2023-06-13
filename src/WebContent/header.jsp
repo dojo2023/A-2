@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<div id = "home">heda</div>
+<div id = "logo">logo</div>
+<div id = "menu">menu</div>
 </body>
 </html>
