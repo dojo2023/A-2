@@ -8,7 +8,7 @@
 <link rel="stylesheet" type="text/css" href="/syuudeen/css/home.css">
 </head>
 <body>
-<%@ include file = "/header.jsp" %>
+<%@ include file = "/WEB-INF/jsp/header.jsp" %>
 <div id = "alert">通知<input type="checkbox"></div>
 <div id = "timer"><div id = "timer_img"></div><div id = "timer_text"></div></div>
 <div id = "search_position">
