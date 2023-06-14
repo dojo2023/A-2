@@ -59,9 +59,12 @@ public class HomeServlet extends HttpServlet {
 //		}
 //		System.out.println(navResponse.body());
 
+		// success
 		String stationId = UsageTakemura.convertGeoToId("35.70172838341061,139.67169333390262");
-//		String stationName = UsageTakemura.convertIdToName(stationId);
-		System.out.println(stationId + "\n");
+		// success
+		String stationName = UsageTakemura.convertIdToName("00004254");
+		System.out.println(stationId);
+		System.out.println(stationName);
 		// TODO LastTrainServletにリダイレクトするように変更
 		response.sendRedirect("/syuudeen/HomeServlet");
 	}
