@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="/syuudeen/css/common.css">
 </head>
 <body>
-<%@ include file = "/header.jsp" %>
+<%@ include file = "/WEB-INF/jsp/header.jsp" %>
 <div id = guide>本日の終電時刻は</div>
 <div id = station></div>
 <div id = start_time></div>
