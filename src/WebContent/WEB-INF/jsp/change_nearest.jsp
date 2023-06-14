@@ -6,9 +6,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/syuudeen/css/change_nearest.css">
+<link rel="stylesheet" type="text/css" href="/syuudeen/css/common.css">
 </head>
 <body>
-<%@ include file = "/header.jsp" %>
+<%@ include file = "/WEB-INF/jsp/header.jsp"  %>
 
 <div id = "user_id">ID：</div>
 <form method = "POST" action = "/syuudeen/ChangeNearestServlet">
