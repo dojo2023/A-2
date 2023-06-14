@@ -19,7 +19,7 @@
 </div>
 
 <div id = "search_position">
-  <input type = "submit" value = "最寄り駅検索" onclick="">
+  <input type = "button" value = "最寄り駅検索" onclick="">
 </div>
 
 <div id = "check_message">※自宅で登録してください</div>
