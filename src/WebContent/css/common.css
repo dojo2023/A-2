@@ -1,5 +1,19 @@
 @charset "UTF-8";
 
+/* すべてのページに適応 */
+html {
+  font-family: fantasy
+}
+
+/* bodyタグ */
+body {
+  background-size: cover;
+  margin: 0 0 0 0;		/* マージンなし（後で個別に設定） */
+  padding: 0 0 0 0;		/* パディングなし（後で個別に設定） */
+  color: rgb(255, 255, 255);
+  font-size: 30px;
+  background-color: black;
+}
 .inner {
 	justify-content: space-between;
 	display: flex;
