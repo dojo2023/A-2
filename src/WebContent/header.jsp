@@ -6,10 +6,15 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/syuudeen/css/home.css">
+<link rel="stylesheet" type="text/css" href="/syuudeen/css/common.css">
 </head>
 <body>
-<div id = "home">heda</div>
-<div id = "logo">logo</div>
-<div id = "menu">menu</div>
+<div class="content">
+<div class="inner">
+<span id = "home">heda</span>
+<span id = "logo">logo</span>
+<span id = "menu">menu</span>
+</div>
+</div>
 </body>
 </html>

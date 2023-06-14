@@ -1,1 +1,11 @@
 @charset "UTF-8";
+
+.inner {
+	justify-content: space-between;
+	display: flex;
+}
+
+.inner * {
+	padding: 10px;              /* 余白指定 */
+    height: 100px;              /* 高さ指定 */
+}

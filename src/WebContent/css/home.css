@@ -14,28 +14,3 @@ body {
   font-size: 30px;
   background-color: black;
 }
-
-#home {
-    padding: 10px;              /* 余白指定 */
-    text-align: left;        /* 左寄せ */
-    height: 100px;              /* 高さ指定 */
-}
-
-#logo {
-    padding: 10px;              /* 余白指定 */
-    text-align: center;        /* 中央寄せ */
-    height: 100px;              /* 高さ指定 */
-}
-
-#menu {
-    padding: 10px;              /* 余白指定 */
-    text-align: right;        /* 右寄せ */
-    height: 100px;              /* 高さ指定 */
-}
-
-#alert {
-	position: absolute;        /* 要素の配置方法を指定 */
-    padding: 10px;             /* 余白指定 */
-    text-align: center;        /* 中央寄せ */
-    top: 300px;                  /* 上からの位置指定 */
-}
