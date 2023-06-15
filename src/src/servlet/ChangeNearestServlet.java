@@ -6,12 +6,17 @@ import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import dao.UsersDao;
+import model.UsageTakemura;
+import model.UserBeans;
 
 /**
  * Servlet implementation class ChangeNearestServlet
@@ -25,6 +30,34 @@ public class ChangeNearestServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// もしもログインしていなかったらログインサーブレットにリダイレクトする
+		// ！！！ Cookieを使用 ！！！
+		Cookie cookie[] = request.getCookies();		// Cookieは複数ある可能性があるため配列
+		String userId = null;			// userIdが保存されていたらその値、なければnull
+
+		if (cookie != null){
+	    for (int i = 0 ; i < cookie.length ; i++){
+	        if (cookie[i].getName().equals("userId")){
+	          userId = cookie[i].getValue();
+			  break;
+	        }
+	      }
+	    }
+
+		if (userId == null) {
+			response.sendRedirect("/syuudeen/Login");
+			return;
+		}
+		// 以上ログインの確認
+
+		UsersDao uDao = new UsersDao();
+		UserBeans ub = new UserBeans();
+		ub = uDao.select(userId);
+
+		request.setAttribute("userId", userId);
+		request.setAttribute("stationHome", ub.getStationHome());
+		request.setAttribute("stationHomeName", UsageTakemura.convertIdToName(ub.getStationHome()));
+
 		// 最寄り駅変更にフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/change_nearest.jsp");
 		dispatcher.forward(request, response);
@@ -36,14 +69,27 @@ public class ChangeNearestServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
 		// ！！！ Cookieを使用 ！！！
+		Cookie cookie[] = request.getCookies();		// Cookieは複数ある可能性があるため配列
+		String userId = null;			// userIdが保存されていたらその値、なければnull
 
-		//		HttpSession session = request.getSession();
-		//		if (session.getAttribute("id") == null) {
-		//			response.sendRedirect("/simpleBC/Login");
-		//			return;
-		//		}
+		if (cookie != null){
+	    for (int i = 0 ; i < cookie.length ; i++){
+	        if (cookie[i].getName().equals("userId")){
+	          userId = cookie[i].getValue();
+			  break;
+	        }
+	      }
+	    }
+
+		if (userId == null) {
+			response.sendRedirect("/syuudeen/Login");
+			return;
+		}
+		// 以上ログインの確認
+
 		if (request.getParameter("SUBMIT") == null) {
 			response.setContentType("application/json");
 			response.setHeader("Cache-Control", "nocache");
@@ -79,11 +125,16 @@ public class ChangeNearestServlet extends HttpServlet {
 			}
 		}
 		else {
-			String userId = request.getParameter("user_id");
 			String stationId = request.getParameter("station_id");
+			String userAlert = "";
 
-			// TODO UsersDao: 万能updateメソッドの作成
-			boolean result = true;
+			UsersDao uDao = new UsersDao();
+			UserBeans ub = new UserBeans();
+			ub = uDao.select(userId);
+
+			userAlert = ub.getUserAlert();
+			// TODO selectでuserIdに指定したユーザのuserAlertの状態を取得
+			boolean result = uDao.update(userId, userAlert, stationId);
 			if(result==false) {
 				request.setAttribute("msg", "失敗したよ");
 			}else {
