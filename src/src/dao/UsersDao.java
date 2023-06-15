@@ -197,6 +197,14 @@ public List<UserBeans> select(String userId) {
 
 		// SQL文を実行し、結果表を取得する
 		ResultSet rs = pStmt.executeQuery();
+		while (rs.next()) {
+			UserBeans card = new UserBeans();
+
+			card.setUserId(rs.getString("USER_ID"));
+			card.setUserPw(rs.getString("USER_PW"));
+			card.setStationHome(rs.getString("STATION_HOME"));
+			card.setUserAlert(rs.getString("USER_ALERT"));
+		}
 
 	}
 	catch (SQLException e) {
