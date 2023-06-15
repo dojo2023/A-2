@@ -10,7 +10,7 @@
 <body>
 <div id = "logo_register">logo</div>
 
-<form id="user_register" method="POST" action="/syuudeen/HomeServlet">
+<form id="user_register" method="POST" action="/syuudeen/UserRegisterServlet">
 
  <div id="user_register_area">
   <input type="text" placeholder="１文字以上１２文字以下の半角英数字で入力してください" id="user_id">

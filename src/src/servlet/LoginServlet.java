@@ -10,10 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.IdpwDAO;
-import model.Idpw;
-import model.LoginUser;
-import model.Result;
+import dao.UsersDao;
 
 /**
  * Servlet implementation class LoginServlet
@@ -40,30 +37,28 @@ public class LoginServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		// リクエストパラメータを取得する
 				request.setCharacterEncoding("UTF-8");
-				String id = request.getParameter("ID");
-				String pw = request.getParameter("PW");
+				String id = request.getParameter("userId");
+				String pw = request.getParameter("userId");
 
 				// ログイン処理を行う
-				UserDao UDao = new UserDao();
-				if (UDao.isLoginOK(userId, userPw)) {	// ログイン成功
+				UsersDao UDao = new UsersDao();
+				if (UDao.isLoginOK(id, pw)) {	// ログイン成功
 					// セッションスコープにIDを格納する
 					HttpSession session = request.getSession();
-					session.setAttribute("id", userId);
+					session.setAttribute("userId", id);
 
 					// メニューサーブレットにリダイレクトする
-					response.sendRedirect("/simpleBC/HomeServlet");
+					response.sendRedirect("/syuudeen/HomeServlet");
 				}
 				else {									// ログイン失敗
 					// リクエストスコープに、タイトル、メッセージ、戻り先を格納する
-					request.setAttribute("result",
-					new Result("ログイン失敗！", "IDまたはPWに間違いがあります。", "/simpleBC/LoginServlet"));
+					request.setAttribute("result","ログイン失敗！");
 
 					// 結果ページにフォワードする
-					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/home.jsp");
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
 					dispatcher.forward(request, response);
 				}
 			}
-		doGet(request, response);
+		//doGet(request, response);
 	}
 
-}

@@ -9,10 +9,10 @@
 	</head>
 	<body>
 		<div id = "logo_login">logo</div>
-			<form id="user_login" method="POST" action="/syuudeen/HomeServlet">
+			<form id="user_login" method="POST" action="/syuudeen/LoginServlet">
 				<div id="user_login_area">
-					<input type="text" id="user_id" placeholder="ID">
-					<input type="text" id="user_pw" placeholder="パスワード">
+					<input type="text" id="user_id" placeholder="ID" name="ID">
+					<input type="text" id="user_pw" placeholder="パスワード" name="PW">
 					<input type="checkbox" id="pw_check_button">
 				</div>
 				<div id="login_button">
@@ -20,7 +20,7 @@
 				</div>
 				<div id="login_result_false"></div>
 				<div>
-				<a href="/simpleBC/UserRegisterServlet" id="register_link">新規登録はこちらから</a>
+				<a href="/syuudeen/UserRegisterServlet" id="register_link">新規登録はこちらから</a>
 				</div>
 			</form>
 	</body>

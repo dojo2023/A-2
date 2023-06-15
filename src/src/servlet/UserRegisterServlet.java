@@ -38,24 +38,23 @@ public class UserRegisterServlet extends HttpServlet {
 
 		// リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
-		String ID = request.getParameter("ID");
-		String PW = request.getParameter("PW");
+		String ID = request.getParameter("userId");
+		String PW = request.getParameter("userId");
 
 		// 登録処理を行う
 		UsersDao UDao = new UsersDao();
 		if (UDao.insert(ID, PW)) {	// 登録成功
-			request.setAttribute("result",
-			new Result("登録成功！", "レコードを登録しました。", "/simpleBC/MenuServlet"));
+			request.setAttribute("result","登録成功！");
+			// メニューサーブレットにリダイレクトする
+			response.sendRedirect("/syuudeen/HomeServlet");
 		}
 		else {												// 登録失敗
-			request.setAttribute("result",
-			new Result("登録失敗！", "レコードを登録できませんでした。", "/syuudeen"));
-		}
+			request.setAttribute("result","登録失敗！");
 
 		// 結果ページにフォワードする
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/user_register.jsp");
 		dispatcher.forward(request, response);
 		doGet(request, response);
 	}
-
+	}
 }
