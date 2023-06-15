@@ -112,4 +112,49 @@ public class UsersDao {
 		return result;
 	}
 
+	public boolean checkUpdate(String userId,String check) {
+		Connection conn = null;
+		boolean result = false; 
+		
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/src/data/syuudeen", "sa", "");
+
+			// SQL文を準備する
+			String sql = "update BC set USER_ALERT = ? where USER_ID = ?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// SQL文を完成させる
+				pStmt.setString(1, check);
+				pStmt.setString(2, userId);
+			// SQL文を実行する
+			if (pStmt.executeUpdate() == 1) {
+				result = true;
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		
+		return result;
+		
+	}
 }

@@ -1,11 +1,11 @@
 function notice(){
-  if(document.getElementByName("alert_check").checked){
-    var check = 1;
+  if(document.getElementById("alert_check").checked){
+    var check = true;
   }
   else{
-    var check = 0;
+    var check = false;
   }
- let postData = {check:check}
+ let postData = {check:check} 
  //非同期通信始めるよ
 	$.ajaxSetup({scriptCharset:'utf-8'});
 	$.ajax({
@@ -24,8 +24,6 @@ function notice(){
 	//非同期通信が成功したときの処理
 	}).done(function(data) {
 	alert("成功1");
-	// 今回は上の<div id="test"></div>の中に返ってきた文字列を入れる
-	document.getElementById("test").innerText=data[0].name;
 	})
 	//非同期通信が失敗したときの処理
 	.fail(function() {

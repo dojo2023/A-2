@@ -6,10 +6,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/syuudeen/css/home.css">
+<script type="text/javascript" src="/syuudeen/js/home.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body>
 <%@ include file = "/WEB-INF/jsp/header.jsp" %>
-<div id = "alert">通知<input type="checkbox" name="alert_check" onchange="notice()"></div>
+<div id = "alert">通知<input type="checkbox" name="alert_check" id="alert_check" onchange="notice()"></div>
 <div id = "timer"><div id = "timer_img"></div><div id = "timer_text"></div></div>
 <div id = "search_position">
 <form action="/syuudeen/HomeServlet" method="POST">
