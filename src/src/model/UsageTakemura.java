@@ -26,7 +26,7 @@ public class UsageTakemura {
 		HttpRequest navRequest = HttpRequest.newBuilder()
 				.uri(URI.create(uri))
 				.header("X-RapidAPI-Key", "42fbfc38f7msh32b35a875763945p123a2cjsn5122a195ca21")
-				.header("X-RapidAPI-Host", "navitime-route-totalnavi.p.rapidapi.com")
+				.header("X-RapidAPI-Host", "navitime-transport.p.rapidapi.com")
 				.method("GET", HttpRequest.BodyPublishers.noBody())
 				.build();
 		HttpResponse<String> navResponse = null;
@@ -40,14 +40,8 @@ public class UsageTakemura {
 			e.printStackTrace();
 		}
 		m = p.matcher(navResponse.body());
-		System.out.println(navResponse.body());
-		if(m.find()) {
-			System.out.println("aaaaaaaaaaaaa");
-			System.out.println(m.group());
+		if (m.find()) {
 			stationId = m.group().replace("\"", "").split(" ")[1];
-		}
-		else {
-			System.out.println("bbbbbbbbbbbb");
 		}
 		return stationId;
 	}
@@ -82,14 +76,9 @@ public class UsageTakemura {
 			e.printStackTrace();
 		}
 		m = p.matcher(navResponse.body());
-		System.out.println(navResponse.body());
-		if(m.find()) {
-			System.out.println("aaaaaaaaaaaaa");
+		if (m.find()) {
 			System.out.println(m.group());
-			stationName = m.group().replace("\"", "").split(" ")[1];
-		}
-		else {
-			System.out.println("bbbbbbbbbbbb");
+			stationName = m.group().replace("\"", "").replace(",", "").split(" ")[1];
 		}
 		return stationName;
 	}

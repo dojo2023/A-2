@@ -8,8 +8,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import model.UsageTakemura;
+import dao.UsersDao;
+
+
+
 
 /**
  * Servlet implementation class HomeServlet
@@ -42,26 +46,34 @@ public class HomeServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// APIのテスト
-		// 他の機能が実装できてからこちらを組み込みます！
-//		HttpRequest navRequest = HttpRequest.newBuilder()
-//				.uri(URI.create("https://navitime-transport.p.rapidapi.com/transport_node/around?coord=" + "35.70172838341061%2C139.67179608666535" + "&limit=1"))
-//				.header("X-RapidAPI-Key", "42fbfc38f7msh32b35a875763945p123a2cjsn5122a195ca21")
-//				.header("X-RapidAPI-Host", "navitime-transport.p.rapidapi.com")
-//				.method("GET", HttpRequest.BodyPublishers.noBody())
-//				.build();
-//		HttpResponse<String> navResponse = null;
-//		try {
-//			navResponse = HttpClient.newHttpClient().send(navRequest, HttpResponse.BodyHandlers.ofString());
-//		} catch (IOException | InterruptedException e) {
-//			// TODO 自動生成された catch ブロック
-//			e.printStackTrace();
-//		}
-//		System.out.println(navResponse.body());
 
-		String stationId = UsageTakemura.convertGeoToId("35.70172838341061,139.67169333390262");
+		// 送信されたデータの取得
+		String check = request.getParameter("check");
+		//userIDを取得
+		HttpSession session = request.getSession();
+		String userId = (String)session.getAttribute("userId");
+
+		//DAOを実体化（インスタンス化）
+		UsersDao usersdao = new UsersDao();
+
+		//DAOのメソッドに引数を２つ渡してアップデートを行う
+		int result = usersdao.checkUpdate(check,userId);
+
+		if(result==0) {
+			request.setAttribute("msg", "失敗したよ");
+		}else {
+			request.setAttribute("msg", "成功したよ");
+		}
+
+		//ここまで来たらjspに勝手に処理が戻る
+		//${msg}
+
+		// APIのテスト
+//		String stationId = UsageTakemura.convertGeoToId("35.70172838341061,139.67169333390262");
 //		String stationName = UsageTakemura.convertIdToName(stationId);
-		System.out.println(stationId + "\n");
+//		System.out.println(stationId);
+//		System.out.println(stationName);
+
 		// TODO LastTrainServletにリダイレクトするように変更
 		response.sendRedirect("/syuudeen/HomeServlet");
 	}
