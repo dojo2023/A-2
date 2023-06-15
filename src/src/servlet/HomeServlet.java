@@ -50,12 +50,12 @@ public class HomeServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+	if (request.getParameter("SUBMIT") == null) {
 		// 送信されたデータの取得
 		String check = request.getParameter("check");
-		
+
 		System.out.print(check);//テスト用
-		
+
 		//userIDを取得
 		HttpSession session = request.getSession();
 		String userId = (String)session.getAttribute("userId");
@@ -64,7 +64,8 @@ public class HomeServlet extends HttpServlet {
 		UsersDao usersdao = new UsersDao();
 
 		//DAOのメソッドに引数を２つ渡してアップデートを行う
-		boolean result = usersdao.checkUpdate(check,userId);
+		String stationHome="";
+		boolean result = usersdao.update(check,userId,stationHome);
 
 //		boolean result = true; //テスト用
 		if(result==false) {
@@ -72,7 +73,7 @@ public class HomeServlet extends HttpServlet {
 		}else {
 			request.setAttribute("msg", "成功したよ");
 		}
-		
+
 		//ArrayListをインスタンス化
 		ArrayList<String> list = new ArrayList<>();
 
@@ -89,7 +90,10 @@ public class HomeServlet extends HttpServlet {
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
+	}
+	else (){
 
+	}
 		//ここまで来たらjspに勝手に処理が戻る
 		//${msg}
 

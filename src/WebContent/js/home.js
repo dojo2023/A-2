@@ -5,7 +5,7 @@ function notice(){
   else{
     var check = false;
   }
- let postData = {check:check} 
+ let postData = {check:check}
  //非同期通信始めるよ
 	$.ajaxSetup({scriptCharset:'utf-8'});
 	$.ajax({
@@ -31,3 +31,17 @@ function notice(){
 	alert("失敗！");
 	 });
 }
+
+var position = "";
+
+function success(pos) {
+    let crd = pos.coords;
+    position = crd.latitude + "," + crd.longitude;
+}
+
+function position() {
+    navigator.geolocation.getCurrentPosition(success);
+    document.getElementById("hidden_position").value=position;
+
+}
+
