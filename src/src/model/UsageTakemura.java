@@ -40,13 +40,8 @@ public class UsageTakemura {
 			e.printStackTrace();
 		}
 		m = p.matcher(navResponse.body());
-		System.out.println(navResponse.body());
 		if (m.find()) {
-			System.out.println("aaaaaaaaaaaaa");
-			System.out.println(m.group());
 			stationId = m.group().replace("\"", "").split(" ")[1];
-		} else {
-			System.out.println("bbbbbbbbbbbb");
 		}
 		return stationId;
 	}
