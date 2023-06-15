@@ -35,7 +35,7 @@ function search_position() {
         timeStamp: new Date().getTime()
         //非同期通信が成功したときの処理
     }).done(function (data) {
-        document.getElementById("stationId").value = data[0];
+        document.getElementById("station_id").value = data[0];
         document.getElementById("station").innerText = data[1];
     })
         //非同期通信が失敗したときの処理

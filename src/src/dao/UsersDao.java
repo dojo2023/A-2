@@ -113,7 +113,7 @@ public class UsersDao {
 		return result;
 	}
 
-	public boolean checkUpdate(String userId,String check) {
+	public boolean update(String userId,String check, String stationHome) {
 		Connection conn = null;
 		boolean result = false;
 
@@ -125,12 +125,24 @@ public class UsersDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/src/data/syuudeen", "sa", "");
 
 			// SQL文を準備する
-			String sql = "update BC set USER_ALERT = ? where USER_ID = ?";
+			String sql = "update USERS set STATION_HOME = ?, USER_ALERT = ? where USER_ID = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
-				pStmt.setString(1, check);
-				pStmt.setString(2, userId);
+			if(!stationHome.equals("")) {
+				pStmt.setString(1, stationHome);
+			}
+			else {
+				pStmt.setString(1, null);
+			}
+			if(!check.equals("")) {
+				pStmt.setString(2, check);
+			}
+			else {
+				pStmt.setString(2, null);
+			}
+
+			pStmt.setString(3, userId);
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
 				result = true;

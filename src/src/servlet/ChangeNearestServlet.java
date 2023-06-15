@@ -45,7 +45,7 @@ public class ChangeNearestServlet extends HttpServlet {
 		//			return;
 		//		}
 		if (request.getParameter("SUBMIT") == null) {
-			response.setContentType("application/json; charset=UTF-8");
+			response.setContentType("application/json");
 			response.setHeader("Cache-Control", "nocache");
 
 			String position = request.getParameter("position");
@@ -71,12 +71,25 @@ public class ChangeNearestServlet extends HttpServlet {
 				String testJson = mapper.writeValueAsString(list);
 				System.out.println(testJson);
 				//文字コードの指定（これがないとJSPで文字化けする）
-				response.setContentType("text/html;charser=UTF-8");
+				response.setContentType("text/html;charset=UTF-8");
 				//JSONの出力
 				response.getWriter().write(testJson);
 			} catch (JsonProcessingException e) {
 				e.printStackTrace();
 			}
+		}
+		else {
+			String userId = request.getParameter("user_id");
+			String stationId = request.getParameter("station_id");
+
+			// TODO UsersDao: 万能updateメソッドの作成
+			boolean result = true;
+			if(result==false) {
+				request.setAttribute("msg", "失敗したよ");
+			}else {
+				request.setAttribute("msg", "成功したよ");
+			}
+			response.sendRedirect("/syuudeen/ChangeNearestServlet");
 		}
 
 	}
