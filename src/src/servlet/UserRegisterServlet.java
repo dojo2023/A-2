@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,6 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import dao.UsersDao;
 
@@ -35,26 +39,60 @@ public class UserRegisterServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
-		// リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
-		String ID = request.getParameter("userId");
-		String PW = request.getParameter("userId");
+		if (request.getParameter("SUBMIT") == null) {
+			response.setContentType("application/json; charset=UTF-8");
+			response.setHeader("Cache-Control", "nocache");
 
-		// 登録処理を行う
-		UsersDao UDao = new UsersDao();
-		if (UDao.insert(ID, PW)) {	// 登録成功
-			request.setAttribute("result","登録成功！");
-			// メニューサーブレットにリダイレクトする
-			response.sendRedirect("/syuudeen/HomeServlet");
+			String position = request.getParameter("position");
+
+			// for debug
+			String stationId = "00000877";
+			String stationName = "荻窪";
+
+			//			String stationId = UsageTakemura.convertGeoToId(position);
+			//			String stationName = UsageTakemura.convertIdToName(stationId);
+
+			//ArrayListをインスタンス化
+			ArrayList<String> list = new ArrayList<>();
+
+			//適当な値を突っ込む
+			list.add(stationId);
+			list.add(stationName);
+
+			//Jackson機能のmapperをインスタンス（実体）化
+			ObjectMapper mapper = new ObjectMapper();
+			try {
+				//JavaオブジェクトからJSONに変換
+				String testJson = mapper.writeValueAsString(list);
+				System.out.println(testJson);
+				//文字コードの指定（これがないとJSPで文字化けする）
+				response.setContentType("text/html;charser=UTF-8");
+				//JSONの出力
+				response.getWriter().write(testJson);
+			} catch (JsonProcessingException e) {
+				e.printStackTrace();
+			}
+		} else {
+			// リクエストパラメータを取得する
+			String ID = request.getParameter("user_id");
+			String PW = request.getParameter("user_pw");
+			String stationId = request.getParameter("station_id");
+
+			// 登録処理を行う
+			UsersDao UDao = new UsersDao();
+			if (UDao.insert(ID, PW, stationId)) { // 登録成功
+				request.setAttribute("result", "登録成功！");
+				// メニューサーブレットにリダイレクトする
+				response.sendRedirect("/syuudeen/HomeServlet");
+			} else { // 登録失敗
+				request.setAttribute("result", "登録失敗！");
+
+				// 結果ページにフォワードする
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/user_register.jsp");
+				dispatcher.forward(request, response);
+				doGet(request, response);
+			}
 		}
-		else {												// 登録失敗
-			request.setAttribute("result","登録失敗！");
-
-		// 結果ページにフォワードする
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/user_register.jsp");
-		dispatcher.forward(request, response);
-		doGet(request, response);
-	}
 	}
 }
