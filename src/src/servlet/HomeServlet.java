@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,6 +34,25 @@ public class HomeServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
 		// ！！！ Cookieを使用 ！！！
+		Cookie cookie[] = request.getCookies();		// Cookieは複数ある可能性があるため配列
+		String userId = null;			// userIdが保存されていたらその値、なければnull
+
+		if (cookie != null){
+			for (int i = 0 ; i < cookie.length ; i++){
+				if (cookie[i].getName().equals("userId")){
+				userId = cookie[i].getValue();
+				break;
+	        }
+	      }
+	    }
+
+		if (userId == null) {
+			response.sendRedirect("/syuudeen/LoginServlet");
+			return;
+		}
+		// 以上ログインの確認
+
+
 
 //		HttpSession session = request.getSession();
 //		if (session.getAttribute("id") == null) {
