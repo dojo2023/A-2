@@ -6,6 +6,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/syuudeen/css/common.css">
+<script type="text/javascript" src="/syuudeen/js/user_register.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
 </head>
 <body>
 <div id = "logo_register">logo</div>
@@ -25,7 +28,7 @@
  </div>
 <input type="hidden" id="station_id" name="station_id" value="">
   <!-- onclickはjsです -->
-   <input type="button" value="最寄り駅検索" onclick="goAjax()">
+   <input type="button" value="最寄り駅検索" onclick="search_position()">
    <label id="check_message">※自宅で登録してください</label>
 
  </div>
