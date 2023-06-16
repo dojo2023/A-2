@@ -26,7 +26,7 @@ public class LoginServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
 		// ！！！ Cookieを使用 ！！！
-		Cookie cookie[] = request.getCookies(); // Cookieは複数ある可能性があるため配列
+		/*Cookie cookie[] = request.getCookies(); // Cookieは複数ある可能性があるため配列
 		String userId = null; // userIdが保存されていたらその値、なければnull
 
 		if (cookie != null) {
@@ -41,7 +41,7 @@ public class LoginServlet extends HttpServlet {
 		if (userId == null) {
 			response.sendRedirect("/syuudeen/LoginServlet");
 			return;
-		}
+		}*/
 		// 以上ログインの確認
 		// フォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");

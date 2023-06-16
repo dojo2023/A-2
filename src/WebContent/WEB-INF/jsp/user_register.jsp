@@ -35,7 +35,7 @@
 
  <div id="register_result_false"></div>
 
- <input type="submit" value="登録" id="register">
+ <input type="submit" value="登録" id="register" name="SUBMIT">
 
 </form>
 

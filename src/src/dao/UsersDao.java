@@ -83,7 +83,7 @@ public class UsersDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/src/data/syuudeen", "sa", "");
 
 			// SQL文を準備する
-			String sql = "insert into users values (?, ?, ?)";
+			String sql = "insert into users (USER_ID, USER_PW, STATION_HOME) values (?, ?, ?)";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる

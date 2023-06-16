@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,7 +30,7 @@ public class UserRegisterServlet extends HttpServlet {
 
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
 		// ！！！ Cookieを使用 ！！！
-		Cookie cookie[] = request.getCookies();		// Cookieは複数ある可能性があるため配列
+		/*Cookie cookie[] = request.getCookies();		// Cookieは複数ある可能性があるため配列
 		String userId = null;			// userIdが保存されていたらその値、なければnull
 
 		if (cookie != null){
@@ -46,7 +45,7 @@ public class UserRegisterServlet extends HttpServlet {
 		if (userId == null) {
 			response.sendRedirect("/syuudeen/LoginServlet");
 			return;
-		}
+		}*/
 		// 以上ログインの確認
 
 		// フォワードする
