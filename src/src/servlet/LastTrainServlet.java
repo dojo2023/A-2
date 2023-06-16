@@ -48,6 +48,25 @@ public class LastTrainServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// ！！！ Cookieを使用 ！！！
+		Cookie cookie[] = request.getCookies();		// Cookieは複数ある可能性があるため配列
+		String userId = null;			// userIdが保存されていたらその値、なければnull
+
+		if (cookie != null){
+			for (int i = 0 ; i < cookie.length ; i++){
+				if (cookie[i].getName().equals("userId")){
+				userId = cookie[i].getValue();
+				break;
+	        }
+	      }
+	    }
+
+		if (userId == null) {
+			response.sendRedirect("/syuudeen/LoginServlet");
+			return;
+		}
+		// 以上ログインの確認
+		//ホーム画面に戻る
 		response.sendRedirect("/syuudeen/HomeServlet");
 	}
 
