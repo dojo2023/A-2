@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -36,23 +37,25 @@ public class ChangeNearestServlet extends HttpServlet {
 		String userId = null;			// userIdが保存されていたらその値、なければnull
 
 		if (cookie != null){
-	    for (int i = 0 ; i < cookie.length ; i++){
-	        if (cookie[i].getName().equals("userId")){
-	          userId = cookie[i].getValue();
-			  break;
+			for (int i = 0 ; i < cookie.length ; i++){
+				if (cookie[i].getName().equals("userId")){
+				userId = cookie[i].getValue();
+				break;
 	        }
 	      }
 	    }
 
 		if (userId == null) {
-			response.sendRedirect("/syuudeen/Login");
+			response.sendRedirect("/syuudeen/LoginServlet");
 			return;
 		}
 		// 以上ログインの確認
 
 		UsersDao uDao = new UsersDao();
 		UserBeans ub = new UserBeans();
-		ub = uDao.select(userId);
+		List<UserBeans> ul = new ArrayList<>();
+		ul = uDao.select(userId);
+		ub = ul.get(0);
 
 		request.setAttribute("userId", userId);
 		request.setAttribute("stationHome", ub.getStationHome());
@@ -130,7 +133,9 @@ public class ChangeNearestServlet extends HttpServlet {
 
 			UsersDao uDao = new UsersDao();
 			UserBeans ub = new UserBeans();
-			ub = uDao.select(userId);
+			List<UserBeans> ul = new ArrayList<>();
+			ul = uDao.select(userId);
+			ub = ul.get(0);
 
 			userAlert = ub.getUserAlert();
 			// TODO selectでuserIdに指定したユーザのuserAlertの状態を取得
