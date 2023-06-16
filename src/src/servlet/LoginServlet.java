@@ -9,7 +9,6 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import dao.UsersDao;
 
@@ -58,15 +57,16 @@ public class LoginServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		// リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
-		String id = request.getParameter("userId");
-		String pw = request.getParameter("userId");
+		String id = request.getParameter("user_id");
+		String pw = request.getParameter("user_pw");
 
 		// ログイン処理を行う
 		UsersDao UDao = new UsersDao();
 		if (UDao.isLoginOK(id, pw)) { // ログイン成功
 			// セッションスコープにIDを格納する
-			HttpSession session = request.getSession();
-			session.setAttribute("userId", id);
+			Cookie cookie = new Cookie("userId", id);
+			cookie.setMaxAge(3 * 24 * 60 * 60);
+			response.addCookie(cookie);
 
 			// メニューサーブレットにリダイレクトする
 			response.sendRedirect("/syuudeen/HomeServlet");
