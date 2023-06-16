@@ -18,7 +18,7 @@
 <div id = "change_check">変更する<input type = "checkbox"></div>
 
 <div id = "station">${stationHomeName}</div>
-<input type="hidden" id="station_id" name="station_id" value="${stationId}">
+<input type="hidden" id="station_id" name="station_id" value="${stationHome}">
 
 <div id = "search_position">
   <input type = "button" name="SUBMIT" value = "最寄り駅検索" onclick="search_position()">
