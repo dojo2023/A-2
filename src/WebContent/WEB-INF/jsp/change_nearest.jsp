@@ -13,12 +13,12 @@
 <body>
 <%@ include file = "/WEB-INF/jsp/header.jsp"  %>
 
-<div id = "user_id" name = "user_id">ID：</div>
+<div id = "user_id" name = "user_id">ID：${userId}</div>
 <form method = "POST" action = "/syuudeen/ChangeNearestServlet">
 <div id = "change_check">変更する<input type = "checkbox"></div>
 
-<div id = "station">ここに駅名表示</div>
-<input type="hidden" id="station_id" name="station_id" value="">
+<div id = "station">${stationHomeName}</div>
+<input type="hidden" id="station_id" name="station_id" value="${stationId}">
 
 <div id = "search_position">
   <input type = "button" name="SUBMIT" value = "最寄り駅検索" onclick="search_position()">
