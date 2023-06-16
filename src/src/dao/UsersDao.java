@@ -204,6 +204,8 @@ public List<UserBeans> select(String userId) {
 			card.setUserPw(rs.getString("USER_PW"));
 			card.setStationHome(rs.getString("STATION_HOME"));
 			card.setUserAlert(rs.getString("USER_ALERT"));
+
+			cardList.add(card);
 		}
 
 	}
