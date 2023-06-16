@@ -76,9 +76,26 @@ public class HomeServlet extends HttpServlet {
 
 		System.out.print(check);//テスト用
 
-		//userIDを取得
-		HttpSession session = request.getSession();
-		String userId = (String)session.getAttribute("userId");
+		// もしもログインしていなかったらログインサーブレットにリダイレクトする
+		// ！！！ Cookieを使用 ！！！
+		Cookie cookie[] = request.getCookies();		// Cookieは複数ある可能性があるため配列
+		String userId = null;			// userIdが保存されていたらその値、なければnull
+
+		if (cookie != null){
+			for (int i = 0 ; i < cookie.length ; i++){
+				if (cookie[i].getName().equals("userId")){
+				userId = cookie[i].getValue();
+				break;
+	        }
+	      }
+	    }
+
+		if (userId == null) {
+			response.sendRedirect("/syuudeen/LoginServlet");
+			return;
+		}
+		// 以上ログインの確認
+
 
 		//DAOを実体化（インスタンス化）
 		UsersDao usersdao = new UsersDao();
