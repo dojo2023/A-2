@@ -104,8 +104,8 @@ public class UserRegisterServlet extends HttpServlet {
 			UsersDao UDao = new UsersDao();
 			if (UDao.insert(ID, PW, stationId)) { // 登録成功
 				request.setAttribute("result", "登録成功！");
-				// メニューサーブレットにリダイレクトする
-				response.sendRedirect("/syuudeen/HomeServlet");
+				//ログインサーブレットにリダイレクトする
+				response.sendRedirect("/syuudeen/loginServlet");
 			} else { // 登録失敗
 				request.setAttribute("result", "登録失敗！");
 
