@@ -167,3 +167,19 @@ insert into users values (?, ?, ?) [21002-199]
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.base/java.lang.Thread.run(Thread.java:834)
+2023-06-19 09:47:30 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: テーブル "USER" が見つかりません
+Table "USER" not found; SQL statement:
+select * from user [42102-200]
+2023-06-19 10:52:16 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: SQLステートメントに文法エラーがあります "DORP[*] TABLE TRAINS"; 期待されるステートメント "DELETE, DROP, DECLARE, DEALLOCATE"
+Syntax error in SQL statement "DORP[*] TABLE TRAINS"; expected "DELETE, DROP, DECLARE, DEALLOCATE"; SQL statement:
+dorp table trains [42001-200]
+2023-06-19 10:52:45 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: SQLステートメントに文法エラーがあります "DORP[*] TRAINS"; 期待されるステートメント "DELETE, DROP, DECLARE, DEALLOCATE"
+Syntax error in SQL statement "DORP[*] TRAINS"; expected "DELETE, DROP, DECLARE, DEALLOCATE"; SQL statement:
+dorp trains [42001-200]
+2023-06-19 10:53:18 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: SQLステートメントに文法エラーがあります "DORP[*] TABLE TRAINS"; 期待されるステートメント "DELETE, DROP, DECLARE, DEALLOCATE"
+Syntax error in SQL statement "DORP[*] TABLE TRAINS"; expected "DELETE, DROP, DECLARE, DEALLOCATE"; SQL statement:
+dorp table trains [42001-200]
