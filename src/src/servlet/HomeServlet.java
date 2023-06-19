@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,6 +17,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import dao.UsersDao;
+import model.UserBeans;
 
 
 
@@ -99,11 +101,17 @@ public class HomeServlet extends HttpServlet {
 
 
 		//DAOを実体化（インスタンス化）
-		UsersDao usersdao = new UsersDao();
+		UsersDao uDao = new UsersDao();
+		UserBeans ub = new UserBeans();
+		List<UserBeans> ul = new ArrayList<>();
+
+		ul = uDao.select(userId);
+		ub = ul.get(0);
+		String stationHome = ub.getStationHome();
 
 		//DAOのメソッドに引数を２つ渡してアップデートを行う
-		String stationHome="";
-		boolean result = usersdao.update(check,userId,stationHome);
+
+		boolean result = uDao.update(userId, check, stationHome);
 
 //		boolean result = true; //テスト用
 		if(result==false) {
