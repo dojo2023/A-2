@@ -13,41 +13,45 @@ import model.UserBeans;
 
 public class LastTrainsDao {
 	/**
-	 * @author aiba , katahira
 	 * 現在地から最寄りの駅IDを受け取り、それに対応する終電情報(NaviTimeによる)を返すメソッド
+	 * @author aiba , katahira
 	 *
-	 * param : nearStationId(String)	…NaviTimeによる8桁の数字の駅ID
-	 * 		   userId(String)			…DBのusersテーブルに保存されている固有のユーザーID
-	 * return: stationName(String)…NaviTimeによる駅名、startTime…出発時刻、goalTime…到着時刻、○○線
+	 * @param	nearStationId NaviTimeによる8桁の数字の駅ID
+	 * @param	userId DBのusersテーブルに保存されている固有のユーザーID
+	 * @return 終電情報をすべて持ったjson文字列<br>
+	 * 			NaviTimeによる駅名、startTime…出発時刻、goalTime…到着時刻、○○線
 	 */
-	public static String getLastTrain(String nearStationId,String userId) {
-		
+	public static String getLastTrain(String nearStationId, String userId) {
+
 		//26～34行 userIdからそのユーザーの自宅からの最寄り駅を持ってくる
-		String homeStation ="";
-		
+		String homeStation = "";
+
 		UsersDao uDao = new UsersDao();
 		UserBeans ub = new UserBeans();
 		List<UserBeans> ul = new ArrayList<>();
 		ul = uDao.select(userId);
 		ub = ul.get(0);
-		
+
 		homeStation = ub.getStationHome();
-		
+
 		Calendar now = Calendar.getInstance(); //現在時刻
 		Calendar cn1 = Calendar.getInstance(); //午前2時を超えたか判定するための時刻
-		
+
 		//位置情報検索ボタンを押した日の午前2時に日付を設定する
-		cn1.set(now.get(Calendar.YEAR),now.get(Calendar.MONTH),now.get(Calendar.DATE),2,0,0);
-		
-		if( now.compareTo(cn1)>=0) {
+		cn1.set(now.get(Calendar.YEAR), now.get(Calendar.MONTH), now.get(Calendar.DATE), 2, 0, 0);
+
+		if (now.compareTo(cn1) >= 0) {
 			//その日の終電 6月19日19時の場合 到着時間を6月20日2時に設定
-			cn1.set(now.get(Calendar.YEAR),now.get(Calendar.MONTH),now.get(Calendar.DATE)+1,2,0,0);
+			cn1.set(now.get(Calendar.YEAR), now.get(Calendar.MONTH), now.get(Calendar.DATE) + 1, 2, 0, 0);
 		}
-		String goal_date = cn1.get(Calendar.YEAR)+"-"+String.format("%02d", cn1.get(Calendar.MONTH))+"-"+String.format("%02d", cn1.get(Calendar.DATE))+"T"+
-				String.format("%02d", cn1.get(Calendar.HOUR))+"%3A"+String.format("%02d", cn1.get(Calendar.MINUTE))+"%3A"+String.format("%02d", cn1.get(Calendar.SECOND));
-		
-		String uri = "https://navitime-route-totalnavi.p.rapidapi.com/route_transit?start="+ nearStationId +"&goal="+ homeStation +"&"
-				+ "goal_time="+goal_date+"&datum=wgs84&term=1440&limit=1&coord_unit=degree";
+		String goal_date = cn1.get(Calendar.YEAR) + "-" + String.format("%02d", cn1.get(Calendar.MONTH)) + "-"
+				+ String.format("%02d", cn1.get(Calendar.DATE)) + "T" +
+				String.format("%02d", cn1.get(Calendar.HOUR)) + "%3A" + String.format("%02d", cn1.get(Calendar.MINUTE))
+				+ "%3A" + String.format("%02d", cn1.get(Calendar.SECOND));
+
+		String uri = "https://navitime-route-totalnavi.p.rapidapi.com/route_transit?start=" + nearStationId + "&goal="
+				+ homeStation + "&"
+				+ "goal_time=" + goal_date + "&datum=wgs84&term=1440&limit=1&coord_unit=degree";
 		HttpRequest navRequest = HttpRequest.newBuilder()
 				.uri(URI.create(uri))
 				.header("X-RapidAPI-Key", "SIGN-UP-FOR-KEY")
@@ -64,7 +68,7 @@ public class LastTrainsDao {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
-		
+
 		return navResponse.body();
 	}
 }
