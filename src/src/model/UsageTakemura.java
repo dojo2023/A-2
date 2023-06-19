@@ -10,11 +10,11 @@ import java.util.regex.Pattern;
 
 public class UsageTakemura {
 	/**
-	 * @author Kei Takemura
 	 * 現在地の緯度と経度を受け取り、現在地からの最寄り駅IDを返すメソッド
+	 * @author Kei Takemura
 	 *
-	 * param : geoLocation(String)	…緯度経度をまとめた文字列 formatに準拠
-	 * return: stationId(String)	…取得した駅ID
+	 * @param	geoLocation 緯度経度をまとめた文字列 formatに準拠
+	 * @return	取得した駅ID
 	 */
 	public static String convertGeoToId(String geoLocation) {
 		String stationId = "";
@@ -47,11 +47,11 @@ public class UsageTakemura {
 	}
 
 	/**
-	 * @author Kei Takemura
 	 * 駅IDを受け取り、それに対応する駅名(NaviTimeによる)を返すメソッド
+	 * @author Kei Takemura
 	 *
-	 * param : stationId(String)	…NaviTimeによる8桁の数字の駅ID
-	 * return: stationName(String)	…NaviTimeによる駅名
+	 * @param stationId NaviTimeによる8桁の数字の駅ID
+	 * @return NaviTimeによる駅名
 	 */
 	public static String convertIdToName(String stationId) {
 		String stationName = "";
