@@ -3,6 +3,8 @@ package servlet;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,12 +13,12 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import dao.UsersDao;
+import model.UsageTakemura;
 import model.UserBeans;
 
 
@@ -137,8 +139,75 @@ public class HomeServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-	else (){
+	else {
+		/*
+		 * 1. 現在地を受け取る
+		 * 2. 現在地からの最寄り駅検索を実行(convertGeoToId)
+		 * 3. 終電情報を取得する(LastTrainsDao>〇〇(メソッド))、jsonが返ってくる
+		 * 4. json加工、必要情報の切り出し
+		 * 5. ユーザIDに基づいて終電テーブルの更新(LastTrainsDao>update)
+		 * 6. LastTrainServlet.javaにリダイレクト
+		 */
 
+		// 1. 現在地を受け取る
+		String geo = request.getParameter("hidden_position");
+
+		// 2. 現在地からの最寄り駅検索を実行
+		String nearStationId = UsageTakemura.convertGeoToId(geo);
+
+		// 3. 終電情報を取得する
+		// TODO メソッド呼び出しに変更
+		String lastTrainInfo = "";
+
+		// 4. json加工
+		// 受け取り用変数
+		String startTime = "";
+		String goalTime = "";
+		String lineName = "";
+		String stationName = "";
+
+		// 正規表現用変数
+		String stRex = "\"from_time\": \".+T[0-9]{2}:[0-9]{2}";
+		String gtRex = "\"to_time\": \".+T[0-9]{2}:[0-9]{2}";
+		String nRex = "\"name\": \".+\"";
+
+		// パターン用変数
+		Pattern stp = Pattern.compile(stRex);
+		Pattern gtp = Pattern.compile(gtRex);
+		Pattern np = Pattern.compile(nRex);
+
+		// Matcher変数
+		Matcher m;
+
+		// startTime受け取り
+		m = stp.matcher(lastTrainInfo);
+		if (m.find()) {
+			startTime = m.group().replace("\"", "").split("T")[1];
+		}
+
+		// goalTime受け取り
+		m = gtp.matcher(lastTrainInfo);
+		if (m.find()) {
+			goalTime = m.group().replace("\"", "").split("T")[1];
+		}
+
+		// lineName, stationName受け取り
+		m = np.matcher(lastTrainInfo);
+		if (m.find()) {
+			String[] res = m.group().split(" ");
+			lineName = res[7].replace("\"", "");
+			stationName = res[1].replace("\"", "");
+		}
+
+		// 5. 終電テーブルの更新(LastTrainsDao>update)
+		// TODO メソッド呼び出し
+
+		// 6. LastTrainServlet.javaにリダイレクト
+		// LastTrainServletでgetAttributeすればデータがとれるはず
+		request.setAttribute("startTime", startTime);
+		request.setAttribute("lineName", lineName);
+		request.setAttribute("stationName", stationName);
+		response.sendRedirect("/syuudeen/LastTrainServlet");
 	}
 		//ここまで来たらjspに勝手に処理が戻る
 		//${msg}
