@@ -36,13 +36,14 @@ public class LastTrainsDao {
 
 		Calendar now = Calendar.getInstance(); //現在時刻
 		Calendar cn1 = Calendar.getInstance(); //午前2時を超えたか判定するための時刻
-
+		
 		//位置情報検索ボタンを押した日の午前2時に日付を設定する
-		cn1.set(now.get(Calendar.YEAR), now.get(Calendar.MONTH), now.get(Calendar.DATE), 2, 0, 0);
-
-		if (now.compareTo(cn1) >= 0) {
+		cn1.set(now.get(Calendar.YEAR),now.get(Calendar.MONTH),now.get(Calendar.DATE),2,0,0);
+		
+		if( now.compareTo(cn1)>=0) { //nowを6月19日17：00  cn1を6月19日02：00とした場合"1"を返す
+			
 			//その日の終電 6月19日19時の場合 到着時間を6月20日2時に設定
-			cn1.set(now.get(Calendar.YEAR), now.get(Calendar.MONTH), now.get(Calendar.DATE) + 1, 2, 0, 0);
+			cn1.set(now.get(Calendar.YEAR),now.get(Calendar.MONTH),now.get(Calendar.DATE)+1,2,0,0);
 		}
 		String goal_date = cn1.get(Calendar.YEAR) + "-" + String.format("%02d", cn1.get(Calendar.MONTH)) + "-"
 				+ String.format("%02d", cn1.get(Calendar.DATE)) + "T" +
