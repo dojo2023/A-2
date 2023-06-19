@@ -17,12 +17,12 @@ user_id varchar(12) not null,
 foreign key(user_id) references users(user_id)			
 );		
 
-create table trains(
+create table last_trains(
 syuudeen_id integer(10000)primary key auto_increment,			
-last_train_id varchar(8) not null,			
-start_time varchar(5) not null,			
+last_train_id varchar(8) ,			
+start_time varchar(5) ,			
 over_flag boolean default(false) not null,			
-goal_time varchar(5) not null,
+goal_time varchar(5) ,
 user_id varchar(12) not null,		
 foreign key(user_id) references users(user_id)			
 );			
