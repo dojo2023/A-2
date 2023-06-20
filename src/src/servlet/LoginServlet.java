@@ -72,7 +72,7 @@ public class LoginServlet extends HttpServlet {
 			response.sendRedirect("/syuudeen/HomeServlet");
 		} else { // ログイン失敗
 			// リクエストスコープに、タイトル、メッセージ、戻り先を格納する
-			request.setAttribute("result", "ログイン失敗！");
+			request.setAttribute("result", "IDかパスワードが間違っています！");
 
 			// 結果ページにフォワードする
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");

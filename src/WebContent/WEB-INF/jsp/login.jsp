@@ -14,6 +14,7 @@
 					<input type="text" id="user_id" placeholder="ID" name="user_id">
 					<input type="text" id="user_pw" placeholder="パスワード" name="user_pw">
 					<input type="checkbox" id="pw_check_button">
+					${result}
 				</div>
 				<div id="login_button">
 					<input type="submit" value="ログイン" id="login">

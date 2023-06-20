@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,6 +15,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import dao.UsersDao;
+import model.UserBeans;
 
 /**
  * Servlet implementation class UserResistServlet
@@ -38,9 +40,9 @@ public class UserRegisterServlet extends HttpServlet {
 				if (cookie[i].getName().equals("userId")){
 				userId = cookie[i].getValue();
 				break;
-	        }
-	      }
-	    }
+		    }
+		  }
+		}
 
 		if (userId == null) {
 			response.sendRedirect("/syuudeen/LoginServlet");
@@ -97,22 +99,65 @@ public class UserRegisterServlet extends HttpServlet {
 			// リクエストパラメータを取得する
 			String ID = request.getParameter("user_id");
 			String PW = request.getParameter("user_pw");
+			String check = request.getParameter("pw_check");
 			String stationId = request.getParameter("station_id");
+			int num = 0;
+
+			//エラーチェック
+
+			//ID,PW,PWチェック,駅検索ボタンのすべてが入力なしの場合
+			if (ID.equals("") || PW.equals("") || check.equals("") || stationId.equals("")) {
+				num += 1;
+				request.setAttribute("errMsg", "すべて入力してください");
+			} else {
+				//DAOを実体化（インスタンス化）
+				UsersDao uDao = new UsersDao();
+				UserBeans ub = new UserBeans();
+				List<UserBeans> ul = new ArrayList<>();
+
+				ul = uDao.select(ID);
+				//IDが既に使用されている場合
+				if (ul.size() != 0) { //リストがどのくらいの大きさか示す→「.size()」
+					num += 1;
+					request.setAttribute("errMsg", "IDが既に使用されています");
+				} else {
+					if (!ID.matches("[0-9a-zA-Z]{1,12}") || !PW.matches("[0-9a-zA-Z]{8,20}")) {
+
+						//IDとPWが指定した形と違う場合
+						String idm = "";
+						if (!ID.matches("[0-9a-zA-Z]{1,12}")) {
+							idm += "IDは12文字以下の半角英数字で入力してください<br>";
+						}
+						if (!PW.matches("[0-9a-zA-Z]{8,20}")) {
+							idm += "PWは8文字以上21文字未満の半角英数字で入力してください";
+						}
+						request.setAttribute("errMsg", idm);
+						num += 1;
+					} else {
+
+						//PWとPWチェックが違う場合
+						if (!PW.equals(check)) {
+							num += 1;
+							request.setAttribute("errMsg", "パスワードが一致しません");
+						}
+
+					}
+				}
+
+			}
 
 			// 登録処理を行う
-			UsersDao UDao = new UsersDao();
-			if (UDao.insert(ID, PW, stationId)) { // 登録成功
-				request.setAttribute("result", "登録成功！");
-				//ログインサーブレットにリダイレクトする
-				response.sendRedirect("/syuudeen/LoginServlet");
-			} else { // 登録失敗
-				request.setAttribute("result", "登録失敗！");
+			if (num == 0) { //成功
+				UsersDao UDao = new UsersDao();
+				UDao.insert(ID, PW, stationId);// 登録成功
+				response.sendRedirect("/syuudeen/LoginServlet"); //ログインサーブレットにリダイレクトする
+			} else { //失敗
 
-				// 結果ページにフォワードする
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/user_register.jsp");
 				dispatcher.forward(request, response);
-				doGet(request, response);
 			}
+
+
 		}
 	}
 }
