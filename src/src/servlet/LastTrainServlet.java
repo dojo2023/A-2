@@ -20,19 +20,20 @@ public class LastTrainServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// ！！！ Cookieを使用 ！！！
-		Cookie cookie[] = request.getCookies();		// Cookieは複数ある可能性があるため配列
-		String userId = null;			// userIdが保存されていたらその値、なければnull
+		Cookie cookie[] = request.getCookies(); // Cookieは複数ある可能性があるため配列
+		String userId = null; // userIdが保存されていたらその値、なければnull
 
-		if (cookie != null){
-			for (int i = 0 ; i < cookie.length ; i++){
-				if (cookie[i].getName().equals("userId")){
-				userId = cookie[i].getValue();
-				break;
-	        }
-	      }
-	    }
+		if (cookie != null) {
+			for (int i = 0; i < cookie.length; i++) {
+				if (cookie[i].getName().equals("userId")) {
+					userId = cookie[i].getValue();
+					break;
+				}
+			}
+		}
 
 		if (userId == null) {
 			response.sendRedirect("/syuudeen/LoginServlet");
@@ -51,19 +52,20 @@ public class LastTrainServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// ！！！ Cookieを使用 ！！！
-		Cookie cookie[] = request.getCookies();		// Cookieは複数ある可能性があるため配列
-		String userId = null;			// userIdが保存されていたらその値、なければnull
+		Cookie cookie[] = request.getCookies(); // Cookieは複数ある可能性があるため配列
+		String userId = null; // userIdが保存されていたらその値、なければnull
 
-		if (cookie != null){
-			for (int i = 0 ; i < cookie.length ; i++){
-				if (cookie[i].getName().equals("userId")){
-				userId = cookie[i].getValue();
-				break;
-	        }
-	      }
-	    }
+		if (cookie != null) {
+			for (int i = 0; i < cookie.length; i++) {
+				if (cookie[i].getName().equals("userId")) {
+					userId = cookie[i].getValue();
+					break;
+				}
+			}
+		}
 
 		if (userId == null) {
 			response.sendRedirect("/syuudeen/LoginServlet");
@@ -77,6 +79,4 @@ public class LastTrainServlet extends HttpServlet {
 		response.sendRedirect("/syuudeen/HomeServlet");
 	}
 
-	}
-
-
+}

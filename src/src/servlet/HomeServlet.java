@@ -202,9 +202,7 @@ public class HomeServlet extends HttpServlet {
 		}
 
 		// 5. 終電テーブルの更新(LastTrainsDao>update)
-		LastTrainBeans ltb = new LastTrainBeans();
 		List<LastTrainBeans> list = new ArrayList<>();
-		// TODO selectメソッド呼び出し
 		list = ltd.select(userId);
 		String overFlag = list.get(0).getOverFlag();
 		ltd.update(lastTrainInfo, startTime, goalTime, overFlag, userId);
