@@ -58,13 +58,7 @@ public class HomeServlet extends HttpServlet {
 		}
 		// 以上ログインの確認
 
-
-
-//		HttpSession session = request.getSession();
-//		if (session.getAttribute("id") == null) {
-//			response.sendRedirect("/simpleBC/Login");
-//			return;
-//		}
+		request.setAttribute("startTime", request.getAttribute("startTime"));
 
 		// フォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/home.jsp");
