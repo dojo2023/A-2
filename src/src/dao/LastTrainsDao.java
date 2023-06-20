@@ -25,7 +25,7 @@ public class LastTrainsDao {
 	 * @return 終電情報をすべて持ったjson文字列<br>
 	 * 			NaviTimeによる駅名、startTime…出発時刻、goalTime…到着時刻、○○線
 	 */
-	public static String getLastTrain(String nearStationId, String userId) {
+	public String getLastTrain(String nearStationId, String userId) {
 
 		//26～34行 userIdからそのユーザーの自宅からの最寄り駅を持ってくる
 		String homeStation = "";

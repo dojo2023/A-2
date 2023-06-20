@@ -17,7 +17,9 @@ import javax.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import dao.LastTrainsDao;
 import dao.UsersDao;
+import model.LastTrainBeans;
 import model.UsageTakemura;
 import model.UserBeans;
 
@@ -156,8 +158,8 @@ public class HomeServlet extends HttpServlet {
 		String nearStationId = UsageTakemura.convertGeoToId(geo);
 
 		// 3. 終電情報を取得する
-		// TODO メソッド呼び出しに変更
-		String lastTrainInfo = "";
+		LastTrainsDao ltd = new LastTrainsDao();
+		String lastTrainInfo = ltd.getLastTrain(nearStationId, userId);
 
 		// 4. json加工
 		// 受け取り用変数
@@ -169,12 +171,14 @@ public class HomeServlet extends HttpServlet {
 		// 正規表現用変数
 		String stRex = "\"from_time\": \".+T[0-9]{2}:[0-9]{2}";
 		String gtRex = "\"to_time\": \".+T[0-9]{2}:[0-9]{2}";
-		String nRex = "\"name\": \".+\"";
+		String lnRex = "\"line_name\": \".+\"";
+		String snRex = "\"name\": \".+\"";
 
 		// パターン用変数
 		Pattern stp = Pattern.compile(stRex);
 		Pattern gtp = Pattern.compile(gtRex);
-		Pattern np = Pattern.compile(nRex);
+		Pattern lnp = Pattern.compile(lnRex);
+		Pattern snp = Pattern.compile(snRex);
 
 		// Matcher変数
 		Matcher m;
@@ -191,16 +195,25 @@ public class HomeServlet extends HttpServlet {
 			goalTime = m.group().replace("\"", "").split("T")[1];
 		}
 
-		// lineName, stationName受け取り
-		m = np.matcher(lastTrainInfo);
+		// lineName受け取り
+		m = lnp.matcher(lastTrainInfo);
 		if (m.find()) {
-			String[] res = m.group().split(" ");
-			lineName = res[7].replace("\"", "");
-			stationName = res[1].replace("\"", "");
+			lineName = m.group().replace("\"", "").split(" ")[1];
+		}
+
+		// stationName受け取り
+		m = snp.matcher(lastTrainInfo);
+		if (m.find()) {
+			stationName = m.group().replace("\"", "").split(" ")[1];
 		}
 
 		// 5. 終電テーブルの更新(LastTrainsDao>update)
-		// TODO メソッド呼び出し
+		LastTrainBeans ltb = new LastTrainBeans();
+		List<LastTrainBeans> list = new ArrayList<>();
+		// TODO selectメソッド呼び出し
+		list = ltd.select(userId);
+		String overFlag = list.get(0).getOverFlag();
+		ltd.update(lastTrainInfo, startTime, goalTime, overFlag, userId);
 
 		// 6. LastTrainServlet.javaにリダイレクト
 		// LastTrainServletでgetAttributeすればデータがとれるはず
