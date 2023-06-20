@@ -8,11 +8,13 @@ import java.net.http.HttpResponse;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import model.LastTrainBeans;
 import model.UserBeans;
 
 public class LastTrainsDao {
@@ -146,6 +148,67 @@ public class LastTrainsDao {
 
 
 		return result;
+	}
 
+
+		//SERECT文
+
+		public List<LastTrainBeans> select(String userId) {
+			Connection conn = null;
+			List<LastTrainBeans> cardList = new ArrayList<LastTrainBeans>();
+
+			try {
+				// JDBCドライバを読み込む
+				Class.forName("org.h2.Driver");
+
+				// データベースに接続する
+				conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/src/data/syuudeen", "sa", "");
+
+				// SQL文を準備する
+				String sql = "select * from LAST_TRAINS WHERE USER_ID=?";
+
+				PreparedStatement pStmt = conn.prepareStatement(sql);
+
+				// SQL文を完成させる
+
+				pStmt.setString(1,userId);
+
+				// SQL文を実行し、結果表を取得する
+				ResultSet rs = pStmt.executeQuery();
+				while (rs.next()) {
+					LastTrainBeans card = new LastTrainBeans();
+
+					card.setUserId(rs.getString("USER_ID"));
+					card.setLastTrainId(rs.getString("LAST_TRAIN_ID"));
+					card.setStartTime(rs.getString("START_TIME"));
+					card.setOverFlag(rs.getString("OVER_FLAG"));
+					card.setGoalTime(rs.getString("GOAL_TIME"));
+					cardList.add(card);
+				}
+
+			}
+			catch (SQLException e) {
+				e.printStackTrace();
+				cardList = null;
+			}
+			catch (ClassNotFoundException e) {
+				e.printStackTrace();
+				cardList = null;
+			}
+			finally {
+				// データベースを切断
+				if (conn != null) {
+					try {
+						conn.close();
+					}
+					catch (SQLException e) {
+						e.printStackTrace();
+						cardList = null;
+					}
+				}
+			}
+
+			// 結果を返す
+			return cardList;
 	}
 }
