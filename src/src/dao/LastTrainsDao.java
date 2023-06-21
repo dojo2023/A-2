@@ -44,12 +44,12 @@ public class LastTrainsDao {
 		Calendar cn1 = Calendar.getInstance(); //午前2時を超えたか判定するための時刻
 
 		//位置情報検索ボタンを押した日の午前2時に日付を設定する
-		cn1.set(now.get(Calendar.YEAR),now.get(Calendar.MONTH),now.get(Calendar.DATE),2,0,0);
+		cn1.set(now.get(Calendar.YEAR), now.get(Calendar.MONTH), now.get(Calendar.DATE), 2, 0, 0);
 
-		if( now.compareTo(cn1)>=0) { //nowを6月19日17：00  cn1を6月19日02：00とした場合"1"を返す
+		if (now.compareTo(cn1) >= 0) { //nowを6月19日17：00  cn1を6月19日02：00とした場合"1"を返す
 
 			//その日の終電 6月19日19時の場合 到着時間を6月20日2時に設定
-			cn1.set(now.get(Calendar.YEAR),now.get(Calendar.MONTH),now.get(Calendar.DATE)+1,2,0,0);
+			cn1.set(now.get(Calendar.YEAR), now.get(Calendar.MONTH), now.get(Calendar.DATE) + 1, 2, 0, 0);
 		}
 		String goalDate = cn1.get(Calendar.YEAR) + "-" + String.format("%02d", cn1.get(Calendar.MONTH)) + "-"
 				+ String.format("%02d", cn1.get(Calendar.DATE)) + "T" +
@@ -95,29 +95,25 @@ public class LastTrainsDao {
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
-			if(!lastTrainId.equals("")) {
+			if (!lastTrainId.equals("")) {
 				pStmt.setString(1, lastTrainId);
-			}
-			else {
+			} else {
 				pStmt.setString(1, null);
 			}
-			if(!startTime.equals("")) {
+			if (!startTime.equals("")) {
 				pStmt.setString(2, startTime);
-			}
-			else {
+			} else {
 				pStmt.setString(2, null);
 			}
-			if(!goalTime.equals("")) {
+			if (!goalTime.equals("")) {
 				pStmt.setString(3, goalTime);
-			}
-			else {
+			} else {
 				pStmt.setString(3, null);
 			}
 
-			if(!overFlag.equals("")) {
+			if (!overFlag.equals("")) {
 				pStmt.setString(4, overFlag);
-			}
-			else {
+			} else {
 				pStmt.setString(4, null);
 			}
 
@@ -127,88 +123,120 @@ public class LastTrainsDao {
 			if (pStmt.executeUpdate() == 1) {
 				result = true;
 			}
-		}
-		catch (SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-		catch (ClassNotFoundException e) {
+		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-		}
-		finally {
+		} finally {
 			// データベースを切断
 			if (conn != null) {
 				try {
 					conn.close();
-				}
-				catch (SQLException e) {
+				} catch (SQLException e) {
 					e.printStackTrace();
 				}
 			}
 		}
 
-
 		return result;
 	}
 
+	//SERECT文
 
-		//SERECT文
+	public List<LastTrainBeans> select(String userId) {
+		Connection conn = null;
+		List<LastTrainBeans> cardList = new ArrayList<LastTrainBeans>();
 
-		public List<LastTrainBeans> select(String userId) {
-			Connection conn = null;
-			List<LastTrainBeans> cardList = new ArrayList<LastTrainBeans>();
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
 
-			try {
-				// JDBCドライバを読み込む
-				Class.forName("org.h2.Driver");
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/src/data/syuudeen", "sa", "");
 
-				// データベースに接続する
-				conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/src/data/syuudeen", "sa", "");
+			// SQL文を準備する
+			String sql = "select * from LAST_TRAINS WHERE USER_ID=?";
 
-				// SQL文を準備する
-				String sql = "select * from LAST_TRAINS WHERE USER_ID=?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
 
-				PreparedStatement pStmt = conn.prepareStatement(sql);
+			// SQL文を完成させる
 
-				// SQL文を完成させる
+			pStmt.setString(1, userId);
 
-				pStmt.setString(1,userId);
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+			while (rs.next()) {
+				LastTrainBeans card = new LastTrainBeans();
 
-				// SQL文を実行し、結果表を取得する
-				ResultSet rs = pStmt.executeQuery();
-				while (rs.next()) {
-					LastTrainBeans card = new LastTrainBeans();
-
-					card.setUserId(rs.getString("USER_ID"));
-					card.setLastTrainId(rs.getString("LAST_TRAIN_ID"));
-					card.setStartTime(rs.getString("START_TIME"));
-					card.setOverFlag(rs.getString("OVER_FLAG"));
-					card.setGoalTime(rs.getString("GOAL_TIME"));
-					cardList.add(card);
-				}
-
+				card.setUserId(rs.getString("USER_ID"));
+				card.setLastTrainId(rs.getString("LAST_TRAIN_ID"));
+				card.setStartTime(rs.getString("START_TIME"));
+				card.setOverFlag(rs.getString("OVER_FLAG"));
+				card.setGoalTime(rs.getString("GOAL_TIME"));
+				cardList.add(card);
 			}
-			catch (SQLException e) {
-				e.printStackTrace();
-				cardList = null;
-			}
-			catch (ClassNotFoundException e) {
-				e.printStackTrace();
-				cardList = null;
-			}
-			finally {
-				// データベースを切断
-				if (conn != null) {
-					try {
-						conn.close();
-					}
-					catch (SQLException e) {
-						e.printStackTrace();
-						cardList = null;
-					}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			cardList = null;
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			cardList = null;
+		} finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+					cardList = null;
 				}
 			}
+		}
 
-			// 結果を返す
-			return cardList;
+		// 結果を返す
+		return cardList;
+	}
+
+	// insert文
+	// 引数userIdで指定されたレコードを登録し、成功したらtrueを返す
+	public boolean insert(String userId) {
+		Connection conn = null;
+		boolean result = false;
+
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/src/data/syuudeen", "sa", "");
+
+			// SQL文を準備する
+			String sql = "insert into LAST_TRAINS (USER_ID) values (?)";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// SQL文を完成させる
+			pStmt.setString(1, userId);
+			// SQL文を実行する
+			if (pStmt.executeUpdate() == 1) {
+				result = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		// 結果を返す
+		return result;
 	}
 }
