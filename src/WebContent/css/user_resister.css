@@ -1,1 +1,6 @@
 @charset "UTF-8";
+
+/*PWとPWチェックの確認*/
+#user_id {
+        border: none; /* デフォルトの枠線を消す */
+      }
