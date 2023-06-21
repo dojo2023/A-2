@@ -1,4 +1,4 @@
-
+//PWの確認
       function pushHideButton() {
         var txtPass = document.getElementById("user_pw");
         var btnEye = document.getElementById("pw_check_button");
