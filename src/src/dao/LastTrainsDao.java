@@ -79,6 +79,17 @@ public class LastTrainsDao {
 		return navResponse.body();
 	}
 
+	/**
+	 * 終電情報を受け取り、指定のユーザIDに該当するレコードを更新するメソッド<br>
+	 * @author katahira, aiba
+	 *
+	 * @param	lastTrainId 検索した最寄り駅ID<br>
+	 * 		startTime 終電出発時刻<br>
+	 * 		goalTime 終電到着時刻<br>
+	 * 		overFlag 終電を超過したかどうかのフラグ<br>
+	 * 		userId DBのusersテーブルに保存されている固有のユーザーID
+	 * @return 更新処理の結果(boolean)
+	 */
 	public boolean update(String lastTrainId, String startTime, String goalTime, String overFlag, String userId) {
 		Connection conn = null;
 		boolean result = false;
@@ -141,8 +152,13 @@ public class LastTrainsDao {
 		return result;
 	}
 
-	//SERECT文
-
+	/**
+	 * ユーザIDを受け取り、終電テーブルから該当するレコードを取得するメソッド<br>
+	 * @author katahira, aiba
+	 *
+	 * @param	userId DBのusersテーブルに保存されている固有のユーザーID
+	 * @return クエリ結果のlist
+	 */
 	public List<LastTrainBeans> select(String userId) {
 		Connection conn = null;
 		List<LastTrainBeans> cardList = new ArrayList<LastTrainBeans>();
@@ -198,8 +214,14 @@ public class LastTrainsDao {
 		return cardList;
 	}
 
-	// insert文
-	// 引数userIdで指定されたレコードを登録し、成功したらtrueを返す
+	/**
+	 * ユーザIDを受け取り、終電テーブルに登録処理を行うメソッド<br>
+	 * 終電テーブルのカラムのうち、ユーザIDだけを持つレコードを登録する。
+	 * @author Kei Takemura
+	 *
+	 * @param	userId 入力された固有のユーザーID
+	 * @return insertが成功したかどうか(boolean)
+	 */
 	public boolean insert(String userId) {
 		Connection conn = null;
 		boolean result = false;
