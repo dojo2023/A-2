@@ -16,7 +16,7 @@
 <form id="user_register" method="POST" action="/syuudeen/UserRegisterServlet">
 
  <div id="user_register_area">
-  <input type="text" placeholder="１文字以上１２文字以下の半角英数字で入力してください" id="user_id" name="user_id">
+  <input type="text" placeholder="１文字以上１２文字以下の半角英数字で入力してください" id="user_id" name="user_id"value="${param.user_id }">
   <input type="text" placeholder="８文字以上２０文字以下の半角英数字で入力してください" id="user_pw" name="user_pw">
   <input type="checkbox" id="pw_check_button">
   <input type="text"  placeholder="パスワードをもう一度入力してください" id="pw_check" name="pw_check">

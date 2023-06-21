@@ -11,7 +11,7 @@
 		<div id = "logo_login">logo</div>
 			<form id="user_login" method="POST" action="/syuudeen/LoginServlet">
 				<div id="user_login_area">
-					<input type="text" id="user_id" placeholder="ID" name="user_id">
+					<input type="text" id="user_id" placeholder="ID" name="user_id" value="${param.user_id }">
 					<input type="text" id="user_pw" placeholder="パスワード" name="user_pw">
 					<input type="checkbox" id="pw_check_button">
 					${result}
