@@ -12,11 +12,13 @@
 <div class="inner">
 <span id = "home">heda</span>
 <span id = "logo">logo</span>
-<span id = "menu">menu</span>
+<span class = "menu"><img class="menu_open" src="img/ham-menu-open.png">
+					<img class="menu_close" src="img/ham-menu-close.png">
+</span>
 </div>
 </div>
 
-		<nav class="menu">
+		<nav class="menu_list">
 			<ul>
 				<li>最寄り駅変更</li>
 				<li>カレンダー</li>
