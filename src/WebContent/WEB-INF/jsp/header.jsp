@@ -15,5 +15,13 @@
 <span id = "menu">menu</span>
 </div>
 </div>
+
+		<nav class="menu">
+			<ul>
+				<li>最寄り駅変更</li>
+				<li>カレンダー</li>
+			</ul>
+		</nav>
+
 </body>
 </html>
