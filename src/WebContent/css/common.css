@@ -23,3 +23,26 @@ body {
 	padding: 10px;              /* 余白指定 */
     height: 100px;              /* 高さ指定 */
 }
+
+.menu {
+	background-color: rgba(0,0,0,.5);
+	position: absolute;
+	top: 0;
+	left: -300px;
+	width: 100%;
+	height: 100%;
+	display: grid;
+	justify-content: center;
+	align-content: center;
+	color: white;
+	text-align: center;
+	transition: .5s;
+}
+.menu ul {
+	padding-inline: 0;
+}
+.menu li {
+	list-style: none;
+	margin-top: 1.5rem;
+	cursor: pointer;
+}
