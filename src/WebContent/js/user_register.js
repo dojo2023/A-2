@@ -45,3 +45,20 @@ function search_position() {
             alert("失敗！");
         });
 }
+
+/*PWとPWチェックの確認*/
+
+     function pushHideButton() {
+        var txtPass1 = document.getElementById("user_pw");
+        var txtPass2 = document.getElementById("pw_check");
+        var btnEye = document.getElementById("pw_check_button");
+        if (txtPass1.type === "text" || txtPass2.type === "text") {
+          txtPass1.type = "password";
+          txtPass2.type = "password";
+          btnEye.className = "fa fa-eye";
+        } else {
+          txtPass1.type = "text";
+          txtPass2.type = "text";
+          btnEye.className = "fa fa-eye-slash";
+        }
+      }

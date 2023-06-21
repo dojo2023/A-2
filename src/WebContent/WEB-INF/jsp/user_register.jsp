@@ -6,7 +6,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/syuudeen/css/common.css">
+<link rel="stylesheet" type="text/css" href="/syuudeen/css/user_register.css">
 <script type="text/javascript" src="/syuudeen/js/user_register.js"></script>
+<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 </head>
@@ -17,9 +19,9 @@
 
  <div id="user_register_area">
   <input type="text" placeholder="１文字以上１２文字以下の半角英数字で入力してください" id="user_id" name="user_id"value="${param.user_id }">
-  <input type="text" placeholder="８文字以上２０文字以下の半角英数字で入力してください" id="user_pw" name="user_pw">
-  <input type="checkbox" id="pw_check_button">
-  <input type="text"  placeholder="パスワードをもう一度入力してください" id="pw_check" name="pw_check">
+  <input type="password" placeholder="８文字以上２０文字以下の半角英数字で入力してください" id="user_pw" name="user_pw">
+  <input type="password"  placeholder="パスワードをもう一度入力してください" id="pw_check" name="pw_check">
+    <span id="pw_check_button" class="fa fa-eye" onclick="pushHideButton()"></span>
  </div>
 
  <div id="station_display_area">

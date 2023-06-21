@@ -58,8 +58,9 @@ public class HomeServlet extends HttpServlet {
 			return;
 		}
 		// 以上ログインの確認
-
-		request.setAttribute("startTime", request.getAttribute("startTime"));
+		LastTrainsDao ltd = new LastTrainsDao();
+		String startTime = ltd.select(userId).get(0).getStartTime();
+		request.setAttribute("startTime", startTime);
 
 		// フォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/home.jsp");
