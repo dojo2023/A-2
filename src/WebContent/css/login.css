@@ -1,1 +1,9 @@
 @charset "UTF-8";
+#user_id {
+        border: none; /* デフォルトの枠線を消す */
+      }
+     /* #user_login {
+        border-width: thin;
+        border-style: solid;
+        width: 200px;
+      }*/
