@@ -13,6 +13,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -90,7 +91,7 @@ public class HomeServlet extends HttpServlet {
 	}
 	// 以上ログインの確認
 
-	if (request.getParameter("SUBMIT") == null) {
+	if (request.getParameter("hidden_position") == null) {
 		// 送信されたデータの取得
 		String check = request.getParameter("check");
 
@@ -147,6 +148,10 @@ public class HomeServlet extends HttpServlet {
 
 		// 1. 現在地を受け取る
 		String geo = request.getParameter("hidden_position");
+		if(geo.equals("")) {
+			response.sendRedirect("/syuudeen/HomeServlet");
+			return;
+		}
 
 		// 2. 現在地からの最寄り駅検索を実行
 		String nearStationId = UsageTakemura.convertGeoToId(geo);
@@ -163,8 +168,8 @@ public class HomeServlet extends HttpServlet {
 		String stationName = "";
 
 		// 正規表現用変数
-		String stRex = "\"from_time\": \".+T[0-9]{2}:[0-9]{2}";
-		String gtRex = "\"to_time\": \".+T[0-9]{2}:[0-9]{2}";
+		String stRex = "\"from_time\": \"[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}";
+		String gtRex = "\"to_time\": \"[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}";
 		String lnRex = "\"line_name\": \".+\"";
 		String snRex = "\"name\": \".+\"";
 
@@ -192,26 +197,27 @@ public class HomeServlet extends HttpServlet {
 		// lineName受け取り
 		m = lnp.matcher(lastTrainInfo);
 		if (m.find()) {
-			lineName = m.group().replace("\"", "").split(" ")[1];
+			lineName = m.group().replace("\"", "").replace(",", "").split(" ")[1];
 		}
 
 		// stationName受け取り
 		m = snp.matcher(lastTrainInfo);
 		if (m.find()) {
-			stationName = m.group().replace("\"", "").split(" ")[1];
+			stationName = m.group().replace("\"", "").replace(",", "").split(" ")[1] + "駅";
 		}
 
 		// 5. 終電テーブルの更新(LastTrainsDao>update)
 		List<LastTrainBeans> list = new ArrayList<>();
 		list = ltd.select(userId);
 		String overFlag = list.get(0).getOverFlag();
-		ltd.update(lastTrainInfo, startTime, goalTime, overFlag, userId);
+		ltd.update(nearStationId, startTime, goalTime, overFlag, userId);
 
 		// 6. LastTrainServlet.javaにリダイレクト
 		// LastTrainServletでgetAttributeすればデータがとれるはず
-		request.setAttribute("startTime", startTime);
-		request.setAttribute("lineName", lineName);
-		request.setAttribute("stationName", stationName);
+		HttpSession session = request.getSession();
+		session.setAttribute("startTime", startTime);
+		session.setAttribute("lineName", lineName);
+		session.setAttribute("stationName", stationName);
 		response.sendRedirect("/syuudeen/LastTrainServlet");
 	}
 		//ここまで来たらjspに勝手に処理が戻る
@@ -224,7 +230,7 @@ public class HomeServlet extends HttpServlet {
 //		System.out.println(stationName);
 
 		// TODO LastTrainServletにリダイレクトするように変更
-		response.sendRedirect("/syuudeen/HomeServlet");
+//		response.sendRedirect("/syuudeen/HomeServlet");
 	}
 
 }

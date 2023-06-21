@@ -40,9 +40,6 @@ public class LastTrainServlet extends HttpServlet {
 			return;
 		}
 		// 以上ログインの確認
-		request.setAttribute("startTime", request.getAttribute("startTime"));
-		request.setAttribute("lineName", request.getAttribute("lineName"));
-		request.setAttribute("stationName", request.getAttribute("stationName"));
 
 		// 終電表示画面にフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/last_train.jsp");
@@ -72,8 +69,6 @@ public class LastTrainServlet extends HttpServlet {
 			return;
 		}
 		// 以上ログインの確認
-
-		request.setAttribute("startTime", request.getAttribute("startTime"));
 
 		//ホーム画面に戻る
 		response.sendRedirect("/syuudeen/HomeServlet");

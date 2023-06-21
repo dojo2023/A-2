@@ -51,17 +51,17 @@ public class LastTrainsDao {
 			//その日の終電 6月19日19時の場合 到着時間を6月20日2時に設定
 			cn1.set(now.get(Calendar.YEAR),now.get(Calendar.MONTH),now.get(Calendar.DATE)+1,2,0,0);
 		}
-		String goal_date = cn1.get(Calendar.YEAR) + "-" + String.format("%02d", cn1.get(Calendar.MONTH)) + "-"
+		String goalDate = cn1.get(Calendar.YEAR) + "-" + String.format("%02d", cn1.get(Calendar.MONTH)) + "-"
 				+ String.format("%02d", cn1.get(Calendar.DATE)) + "T" +
 				String.format("%02d", cn1.get(Calendar.HOUR)) + "%3A" + String.format("%02d", cn1.get(Calendar.MINUTE))
 				+ "%3A" + String.format("%02d", cn1.get(Calendar.SECOND));
 
 		String uri = "https://navitime-route-totalnavi.p.rapidapi.com/route_transit?start=" + nearStationId + "&goal="
 				+ homeStation + "&"
-				+ "goal_time=" + goal_date + "&datum=wgs84&term=1440&limit=1&coord_unit=degree";
+				+ "goal_time=" + goalDate + "&datum=wgs84&term=1440&limit=1&coord_unit=degree";
 		HttpRequest navRequest = HttpRequest.newBuilder()
 				.uri(URI.create(uri))
-				.header("X-RapidAPI-Key", "SIGN-UP-FOR-KEY")
+				.header("X-RapidAPI-Key", "42fbfc38f7msh32b35a875763945p123a2cjsn5122a195ca21")
 				.header("X-RapidAPI-Host", "navitime-route-totalnavi.p.rapidapi.com")
 				.method("GET", HttpRequest.BodyPublishers.noBody())
 				.build();
@@ -91,7 +91,7 @@ public class LastTrainsDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/src/data/syuudeen", "sa", "");
 
 			// SQL文を準備する
-			String sql = "update LAST_TRAINS set LAST_TRAIN_ID = ? START_TIME = ?, GOAL_TIME = ?, OVER_FLAG = ?, where USER_ID = ?";
+			String sql = "update LAST_TRAINS set LAST_TRAIN_ID = ?, START_TIME = ?, GOAL_TIME = ?, OVER_FLAG = ? where USER_ID = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる

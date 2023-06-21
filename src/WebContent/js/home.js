@@ -1,47 +1,83 @@
-function notice(){
-  if(document.getElementById("alert_check").checked){
-    var check = true;
-  }
-  else{
-    var check = false;
-  }
- let postData = {check:check}
- //非同期通信始めるよ
-	$.ajaxSetup({scriptCharset:'utf-8'});
+function notice() {
+	if (document.getElementById("alert_check").checked) {
+		var check = true;
+	}
+	else {
+		var check = false;
+	}
+	let postData = { check: check }
+	//非同期通信始めるよ
+	$.ajaxSetup({ scriptCharset: 'utf-8' });
 	$.ajax({
-	//どのサーブレットに送るか
-	//ajaxSampleのところは自分のプロジェクト名に変更する必要あり。
-	url: '/syuudeen/HomeServlet',
-	//どのメソッドを使用するか
-	type:"POST",
-	//受け取るデータのタイプ
-	dataType:"json",
-	//何をサーブレットに飛ばすか（変数を記述）
-	data: postData,
-	//この下の２行はとりあえず書いてる（書かなくても大丈夫？）
-	processDate:false,
-	timeStamp: new Date().getTime()
-	//非同期通信が成功したときの処理
-	}).done(function(data) {
-	alert("成功1");
+		//どのサーブレットに送るか
+		//ajaxSampleのところは自分のプロジェクト名に変更する必要あり。
+		url: '/syuudeen/HomeServlet',
+		//どのメソッドを使用するか
+		type: "POST",
+		//受け取るデータのタイプ
+		dataType: "json",
+		//何をサーブレットに飛ばすか（変数を記述）
+		data: postData,
+		//この下の２行はとりあえず書いてる（書かなくても大丈夫？）
+		processDate: false,
+		timeStamp: new Date().getTime()
+		//非同期通信が成功したときの処理
+	}).done(function (data) {
+		alert("成功1");
 	})
-	//非同期通信が失敗したときの処理
-	.fail(function() {
-	//失敗とアラートを出す
-	alert("失敗！");
-	 });
+		//非同期通信が失敗したときの処理
+		.fail(function () {
+			//失敗とアラートを出す
+			alert("失敗！");
+		});
 }
 
-var position = "";
+var pos = "";
 
 function success(pos) {
-    let crd = pos.coords;
-    position = crd.latitude + "," + crd.longitude;
+	let crd = pos.coords;
+	pos = crd.latitude + "," + crd.longitude;
+	console.log(pos);
+
+	document.getElementById("hidden_position").value = pos;
+
+	document.search_form.submit();
 }
 
 function position() {
-    navigator.geolocation.getCurrentPosition(success);
-    document.getElementById("hidden_position").value=position;
-
+	navigator.geolocation.getCurrentPosition(success);
 }
 
+// lastTrain = xx:xxをもつElement
+let lastTrain = document.getElementById("timer_text").textContent;
+
+// start…現在時刻
+// end…終電時刻
+// ex: 01:30 - 10:30 = - 09:00
+// -09:00 + 24:00 = 15:00
+// ex: 01:30 - 00:30 = 01:00
+function countdown(end) {
+	if(end == null){
+		document.getElementById("timer_text").innerHTML = "ボタンを押して終電検索";
+		return;
+	}
+	else{
+		var tmpDate = new Date();
+		end = end.split(":");
+		var startDate = new Date(0, 0, 0, tmpDate.getTime(), tmpDate.getMinutes(), tmpDate.getSeconds());
+		var endDate = new Date(0, 0, 0, end[0], end[1], 0);
+		var diff = endDate.getTime() - startDate.getTime();
+		var hours = Math.floor(diff / 1000 / 60 / 60);
+		var minutes = Math.floor(diff / 1000 / 60) % 60;
+		var seconds = Math.floor(diff / 1000) % 60;
+		
+		// If using time pickers with 24 hours format, add the below line get exact hours
+		if (hours < 0)
+		hours = hours + 24;
+		
+		document.getElementById("timer_text").innerHTML = (hours <= 9 ? "0" : "") + hours + ":" + (minutes <= 9 ? "0" : "") + minutes + (seconds <= 9 ? "0" : "") + seconds;
+	}
+}
+
+countdown(lastTrain);
+setInterval(countdown, 1000);
