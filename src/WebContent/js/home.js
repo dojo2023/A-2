@@ -22,11 +22,11 @@ function notice() {
 		processDate: false,
 		timeStamp: new Date().getTime()
 		//非同期通信が成功したときの処理
-	}).done(function (data) {
+	}).done(function(data) {
 		alert("成功1");
 	})
 		//非同期通信が失敗したときの処理
-		.fail(function () {
+		.fail(function() {
 			//失敗とアラートを出す
 			alert("失敗！");
 		});
@@ -48,36 +48,41 @@ function position() {
 	navigator.geolocation.getCurrentPosition(success);
 }
 
-// lastTrain = xx:xxをもつElement
-let lastTrain = document.getElementById("timer_text").textContent;
-
 // start…現在時刻
 // end…終電時刻
 // ex: 01:30 - 10:30 = - 09:00
 // -09:00 + 24:00 = 15:00
 // ex: 01:30 - 00:30 = 01:00
-function countdown(end) {
-	if(end == null){
+function countdown() {
+	var lastTrain = document.getElementById("hidden_time").value;
+	if (lastTrain == null) {
 		document.getElementById("timer_text").innerHTML = "ボタンを押して終電検索";
 		return;
 	}
-	else{
+	else {
 		var tmpDate = new Date();
-		end = end.split(":");
-		var startDate = new Date(0, 0, 0, tmpDate.getTime(), tmpDate.getMinutes(), tmpDate.getSeconds());
-		var endDate = new Date(0, 0, 0, end[0], end[1], 0);
-		var diff = endDate.getTime() - startDate.getTime();
+		var endTime = lastTrain.split(":");
+		var startDate = new Date(0, 0, 0, tmpDate.getHours(), tmpDate.getMinutes(), tmpDate.getSeconds());
+		var lastTrainDate = new Date(0, 0, 0, endTime[0], endTime[1], 0);
+		var diff = lastTrainDate.getTime() - startDate.getTime();
 		var hours = Math.floor(diff / 1000 / 60 / 60);
 		var minutes = Math.floor(diff / 1000 / 60) % 60;
 		var seconds = Math.floor(diff / 1000) % 60;
 		
 		// If using time pickers with 24 hours format, add the below line get exact hours
-		if (hours < 0)
-		hours = hours + 24;
-		
-		document.getElementById("timer_text").innerHTML = (hours <= 9 ? "0" : "") + hours + ":" + (minutes <= 9 ? "0" : "") + minutes + (seconds <= 9 ? "0" : "") + seconds;
-	}
+		if (hours < 0){
+			hours = hours + 24;
+		}
+		if(minutes < 0){
+			minutes += 60;
+		}
+		if(seconds < 0){
+			seconds += 60;
+		}
+
+		document.getElementById("timer_text").innerHTML = (hours <= 9 ? "0" : "") + hours + ":" + (minutes <= 9 ? "0" : "") + minutes + (seconds <= 9 ? "0" : "")+ ":" + seconds;
+		}
 }
 
-countdown(lastTrain);
+countdown();
 setInterval(countdown, 1000);
