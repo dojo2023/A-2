@@ -55,7 +55,7 @@ function position() {
 // ex: 01:30 - 00:30 = 01:00
 function countdown() {
 	var lastTrain = document.getElementById("hidden_time").value;
-	if (lastTrain == null) {
+	if (lastTrain == "") {
 		document.getElementById("timer_text").innerHTML = "ボタンを押して終電検索";
 		return;
 	}

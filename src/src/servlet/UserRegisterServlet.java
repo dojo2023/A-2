@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import dao.LastTrainsDao;
 import dao.UsersDao;
 import model.UserBeans;
 
@@ -150,6 +151,8 @@ public class UserRegisterServlet extends HttpServlet {
 			if (num == 0) { //成功
 				UsersDao UDao = new UsersDao();
 				UDao.insert(ID, PW, stationId);// 登録成功
+				LastTrainsDao ltd = new LastTrainsDao();
+				ltd.insert(ID);
 				response.sendRedirect("/syuudeen/LoginServlet"); //ログインサーブレットにリダイレクトする
 			} else { //失敗
 
