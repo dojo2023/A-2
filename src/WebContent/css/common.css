@@ -13,10 +13,13 @@ body {
   color: rgb(255, 255, 255);
   font-size: 30px;
   background-color: black;
+  position: relative;
+  overflow-x: hidden;
 }
 .inner {
 	justify-content: space-between;
 	display: flex;
+	position: relative;
 }
 
 .inner * {
@@ -24,11 +27,37 @@ body {
     height: 100px;              /* 高さ指定 */
 }
 
-.menu {
-	background-color: rgba(0,0,0,.5);
+.menu_2{
+	z-index:1;
+}
+
+.menu img {
+	/* width: 100%;*/
+	filter: invert(1);
 	position: absolute;
 	top: 0;
-	left: -300px;
+	right: 0;
+}
+	.menu_open {
+		opacity: 1;
+	}
+	
+		.menu_open.active {
+			opacity: 0;
+		}
+		
+	.menu_close {
+		opacity: 0;
+	}
+	
+		.menu_close.active {
+			opacity: 1;
+		}
+
+.menu_list {
+	background-color: rgba(0,0,0,.5);
+	position: absolute;
+	transform: translate(100%, 0);
 	width: 100%;
 	height: 100%;
 	display: grid;
@@ -38,10 +67,15 @@ body {
 	text-align: center;
 	transition: .5s;
 }
-.menu ul {
+
+.menu_list.active {
+	transform: translate(0, 0);
+	}
+	
+.menu_list ul {
 	padding-inline: 0;
 }
-.menu li {
+.menu_list li {
 	list-style: none;
 	margin-top: 1.5rem;
 	cursor: pointer;
