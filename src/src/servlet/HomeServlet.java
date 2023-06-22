@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -60,7 +61,29 @@ public class HomeServlet extends HttpServlet {
 		// 以上ログインの確認
 		LastTrainsDao ltd = new LastTrainsDao();
 		String startTime = ltd.select(userId).get(0).getStartTime();
+		String lastTrainId = ltd.select(userId).get(0).getLastTrainId();
+		String goalTime = ltd.select(userId).get(0).getGoalTime();
+
 		request.setAttribute("startTime", startTime);
+		String times[] = new String[2];
+		 times = startTime.split(":");
+
+        String hour = times[0];
+        String minutes = times[1];
+
+
+	     Calendar now = Calendar.getInstance(); //現在時刻
+		 Calendar cn1 = Calendar.getInstance(); //終電時刻を超えたか判定するための時刻
+
+			//位置情報検索ボタンを押した日の終電時刻を設定する
+		cn1.set(now.get(Calendar.YEAR), now.get(Calendar.MONTH), now.get(Calendar.DATE), Integer.parseInt(hour) , Integer.parseInt(minutes) ,0);
+		if (now.compareTo(cn1) >= 0) {
+			LastTrainsDao trainDao = new LastTrainsDao();
+			String overFlag = "true";
+
+			trainDao.update(lastTrainId,startTime,goalTime,overFlag,userId);
+
+		}
 
 		// フォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/home.jsp");

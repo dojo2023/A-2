@@ -47,6 +47,21 @@ function success(pos) {
 function position() {
 	navigator.geolocation.getCurrentPosition(success);
 }
+//オーバーフラグ
+const cookies = document.cookie2;
+const array = cookies.split(';');
+
+array.forEach(function(value) {
+  const content = value.split('=');
+ var overflag = content[0];
+
+    if(overflag.equals('true')){
+        document.getElementById("timer_text").innerHTML = "本日の終電は終了しました。";
+
+    }else{
+
+
+
 
 // start…現在時刻
 // end…終電時刻
@@ -89,7 +104,7 @@ function countdown() {
 
 countdown();
 setInterval(countdown, 1000);
-
+}
 //push通知
 function push(minutes) {
       Push.create('通知するよ', {

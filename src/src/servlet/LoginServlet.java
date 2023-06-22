@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.LastTrainsDao;
 import dao.UsersDao;
-
 /**
  * Servlet implementation class LoginServlet
  */
@@ -67,6 +67,15 @@ public class LoginServlet extends HttpServlet {
 			Cookie cookie = new Cookie("userId", id);
 			cookie.setMaxAge(3 * 24 * 60 * 60);
 			response.addCookie(cookie);
+
+		LastTrainsDao ltd = new LastTrainsDao();
+		String overFlag = ltd.select(id).get(0).getOverFlag();
+
+		Cookie cookie2 = new Cookie("overFlag", overFlag);
+		cookie2.setMaxAge(3 * 24 * 60 * 60);
+		response.addCookie(cookie2);
+
+
 
 			// メニューサーブレットにリダイレクトする
 			response.sendRedirect("/syuudeen/HomeServlet");
