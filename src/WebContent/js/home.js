@@ -59,9 +59,10 @@ array.forEach(function(value) {
         document.getElementById("timer_text").innerHTML = "本日の終電は終了しました。";
 
     }else{
-
-
-
+	    countdown();
+		setInterval(countdown, 1000);
+	}
+});
 
 // start…現在時刻
 // end…終電時刻
@@ -102,9 +103,6 @@ function countdown() {
 		}
 }
 
-countdown();
-setInterval(countdown, 1000);
-}
 //push通知
 function push(minutes) {
       Push.create('通知するよ', {
