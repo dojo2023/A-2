@@ -48,12 +48,11 @@ function position() {
 	navigator.geolocation.getCurrentPosition(success);
 }
 //オーバーフラグ
-const cookies = document.cookie2;
-const array = cookies.split(';');
 
-array.forEach(function(value) {
-  const content = value.split('=');
- var overflag = content[0];
+const cookieoverFlag = document.cookie
+ 	.split('; ')
+ 	.find(row => row.startsWith('overFlag'))
+ 	.split('=')[1];
 
     if(overflag.equals('true')){
         document.getElementById("timer_text").innerHTML = "本日の終電は終了しました。";
@@ -62,7 +61,7 @@ array.forEach(function(value) {
 	    countdown();
 		setInterval(countdown, 1000);
 	}
-});
+
 
 // start…現在時刻
 // end…終電時刻
