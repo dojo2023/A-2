@@ -49,18 +49,19 @@ function position() {
 }
 //オーバーフラグ
 
-const cookieoverFlag = document.cookie
- 	.split('; ')
- 	.find(row => row.startsWith('overFlag'))
- 	.split('=')[1];
+const overFlag = document.cookie
+	.split('; ')
+	.find(row => row.startsWith('overFlag'))
+	.split('=')[1];
 
-    if(overflag.equals('true')){
-        document.getElementById("timer_text").innerHTML = "本日の終電は終了しました。";
+if (overFlag.equals('true')) {
+	document.getElementById("timer_text").innerHTML = "本日の終電は終了しました。";
+	clearInterval(countdown);
 
-    }else{
-	    countdown();
-		setInterval(countdown, 1000);
-	}
+} else {
+	countdown();
+	setInterval(countdown, 1000);
+}
 
 
 // start…現在時刻
@@ -69,7 +70,7 @@ const cookieoverFlag = document.cookie
 // -09:00 + 24:00 = 15:00
 // ex: 01:30 - 00:30 = 01:00
 
-var hours,minutes,seconds;
+var hours, minutes, seconds;
 
 function countdown() {
 	var lastTrain = document.getElementById("hidden_time").value;
@@ -88,49 +89,16 @@ function countdown() {
 		seconds = Math.floor(diff / 1000) % 60;
 
 		// If using time pickers with 24 hours format, add the below line get exact hours
-		if (hours < 0){
+		if (hours < 0) {
 			hours = hours + 24;
 		}
-		if(minutes < 0){
+		if (minutes < 0) {
 			minutes += 60;
 		}
-		if(seconds < 0){
+		if (seconds < 0) {
 			seconds += 60;
 		}
 
 		document.getElementById("timer_text").innerHTML = (hours <= 9 ? "0" : "") + hours + ":" + (minutes <= 9 ? "0" : "") + minutes + ":" + (seconds <= 9 ? "0" : "") + seconds;
-		}
-}
-
-//push通知
-function push(minutes) {
-      Push.create('通知するよ', {
-        body:minutes + '分後に終電が出発します。',
-        icon: "/syuudeen/img/ham-menu-close.png",
-        timeout: 8000, // 通知が消えるタイミング
-        vibrate: [200], // モバイル端末でのバイブレーション秒数
-        onClick: function () {
-          //通知が消える
-		  this.close();
-        }
-      })
-    }
-
-//終電30分前から10分おきに３回通知
-function monitorTime(){
-	//30分前
-	if(hours==0 && minutes == 30 && seconds == 0){
-	push(minutes);
-	}
-	//20分前
-	else if(hours==0 && minutes == 20 && seconds == 0){
-	push(minutes);
-	}
-	//10分前
-	else if(hours==0 && minutes == 10 && seconds == 0){
-	push(minutes);
 	}
 }
-
-monitorTime();
-setInterval(monitorTime, 1000);
