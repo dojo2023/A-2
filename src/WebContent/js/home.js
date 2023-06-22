@@ -53,6 +53,9 @@ function position() {
 // ex: 01:30 - 10:30 = - 09:00
 // -09:00 + 24:00 = 15:00
 // ex: 01:30 - 00:30 = 01:00
+
+var hours,minutes,seconds;
+
 function countdown() {
 	var lastTrain = document.getElementById("hidden_time").value;
 	if (lastTrain == "") {
@@ -65,9 +68,9 @@ function countdown() {
 		var startDate = new Date(0, 0, 0, tmpDate.getHours(), tmpDate.getMinutes(), tmpDate.getSeconds());
 		var lastTrainDate = new Date(0, 0, 0, endTime[0], endTime[1], 0);
 		var diff = lastTrainDate.getTime() - startDate.getTime();
-		var hours = Math.floor(diff / 1000 / 60 / 60);
-		var minutes = Math.floor(diff / 1000 / 60) % 60;
-		var seconds = Math.floor(diff / 1000) % 60;
+		hours = Math.floor(diff / 1000 / 60 / 60);
+		minutes = Math.floor(diff / 1000 / 60) % 60;
+		seconds = Math.floor(diff / 1000) % 60;
 
 		// If using time pickers with 24 hours format, add the below line get exact hours
 		if (hours < 0){
@@ -88,17 +91,35 @@ countdown();
 setInterval(countdown, 1000);
 
 //push通知
-function push() {
-      Push.create('エムトラッドブログを更新しました！', {
-        body: '10分で出来る簡単プッシaュ通知aの方法',
-         icon: "/syuudeen/img/ham-menu-close.png",
-        timeout: 6000, // 通知が消えるタイミング
-        vibrate: [100, 100, 100], // モバイル端末でのバイブレーション秒数
+function push(minutes) {
+      Push.create('通知するよ', {
+        body:minutes + '分後に終電が出発します。',
+        icon: "/syuudeen/img/ham-menu-close.png",
+        timeout: 8000, // 通知が消えるタイミング
+        vibrate: [200], // モバイル端末でのバイブレーション秒数
         onClick: function () {
           // 通知がクリックされた場合の設定
-          window.open('http://mtrad-blog.com/', '_blank');
-          console.log(this);
-
+          window.open('http://localhost:8080/syuudeen/HomeServlet', '_self');
+		  this.close();
         }
       })
     }
+
+//終電30分前から10分おきに３回通知
+function monitorTime(){
+	//30分前
+	if(hours==0 && minutes == 30 && seconds == 0){
+	push(minutes);
+	}
+	//20分前
+	else if(hours==0 && minutes == 20 && seconds == 0){
+	push(minutes);
+	}
+	//10分前
+	else if(hours==0 && minutes == 10 && seconds == 0){
+	push(minutes);
+	}
+}
+
+monitorTime();
+setInterval(monitorTime, 1000);
