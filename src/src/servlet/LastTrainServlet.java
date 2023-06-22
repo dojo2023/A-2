@@ -9,6 +9,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class LastTrainServlet
@@ -40,6 +41,12 @@ public class LastTrainServlet extends HttpServlet {
 			return;
 		}
 		// 以上ログインの確認
+		HttpSession session = request.getSession();
+		String st = (String)session.getAttribute("startTime");
+		//終電時刻を取得するたびにはいるよ
+		Cookie cookieSt = new Cookie("startTime", st);
+		cookieSt.setMaxAge(3 * 24 * 60 * 60);
+		response.addCookie(cookieSt);
 
 		// 終電表示画面にフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/last_train.jsp");
