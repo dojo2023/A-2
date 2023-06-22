@@ -15,13 +15,13 @@
 
 <div id = "user_id" name = "user_id">ID：${userId}</div>
 <form method = "POST" action = "/syuudeen/ChangeNearestServlet">
-<div id = "change_check">変更する<input type = "checkbox"></div>
+<div id = "change_check">変更する<input type = "checkbox"id = "check" onchange ="foo()"></div>
 
 <div id = "station">${stationHomeName}</div>
 <input type="hidden" id="station_id" name="station_id" value="${stationHome}">
 
 <div id = "search_position">
-  <input type = "button" name="SUBMIT" value = "最寄り駅検索" onclick="search_position()">
+  <input type = "button" id="SUBMIT" name="SUBMIT" value = "最寄り駅検索" onclick="search_position()" disabled>
 </div>
 
 <div id = "check_message">※自宅で登録してください</div>
