@@ -98,8 +98,7 @@ function push(minutes) {
         timeout: 8000, // 通知が消えるタイミング
         vibrate: [200], // モバイル端末でのバイブレーション秒数
         onClick: function () {
-          // 通知がクリックされた場合の設定
-          window.open('http://localhost:8080/syuudeen/HomeServlet', '_self');
+          //通知が消える
 		  this.close();
         }
       })
