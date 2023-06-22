@@ -11,7 +11,11 @@
 </head>
 <body>
 <%@ include file = "/WEB-INF/jsp/header.jsp" %>
-<div id = "alert">通知<input type="checkbox" name="alert_check" id="alert_check" onchange="notice()"></div>
+
+<div id = "alert">通知
+<%@ include file = "/WEB-INF/jsp/toggle.jsp" %>
+</div>
+
 <div id = "timer"><div id = "timer_img"></div><div id = "timer_text"></div></div>
 <input type="hidden" id="hidden_time" value="${startTime}">
 <div id = "search_position_button">
