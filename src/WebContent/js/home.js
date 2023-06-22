@@ -68,7 +68,7 @@ function countdown() {
 		var hours = Math.floor(diff / 1000 / 60 / 60);
 		var minutes = Math.floor(diff / 1000 / 60) % 60;
 		var seconds = Math.floor(diff / 1000) % 60;
-		
+
 		// If using time pickers with 24 hours format, add the below line get exact hours
 		if (hours < 0){
 			hours = hours + 24;
@@ -86,3 +86,19 @@ function countdown() {
 
 countdown();
 setInterval(countdown, 1000);
+
+//push通知
+function push() {
+      Push.create('エムトラッドブログを更新しました！', {
+        body: '10分で出来る簡単プッシaュ通知aの方法',
+         icon: "/syuudeen/img/ham-menu-close.png",
+        timeout: 6000, // 通知が消えるタイミング
+        vibrate: [100, 100, 100], // モバイル端末でのバイブレーション秒数
+        onClick: function () {
+          // 通知がクリックされた場合の設定
+          window.open('http://mtrad-blog.com/', '_blank');
+          console.log(this);
+
+        }
+      })
+    }
