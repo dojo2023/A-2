@@ -15,7 +15,7 @@
 
 <div id = "user_id" name = "user_id">ID：${userId}</div>
 <form method = "POST" action = "/syuudeen/ChangeNearestServlet">
-<div id = "change_check">変更する<input type = "checkbox"id = "check" onchange ="foo()"></div>
+<div id = "change_check">変更する<%@ include file = "/WEB-INF/jsp/toggle.jsp" %></div>
 
 <div id = "station">${stationHomeName}</div>
 <input type="hidden" id="station_id" name="station_id" value="${stationHome}">

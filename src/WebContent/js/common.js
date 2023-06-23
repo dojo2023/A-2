@@ -31,7 +31,7 @@ function monitorTime() {
 		.find(row => row.startsWith('overFlag'))
 		.split('=')[1];
 
-	if (overFlag.equals('false')) {
+	if (overFlag === 'false') {
 		// cookieから終電時刻を取得する(xx:xx のフォーマット)
 		const startTime = document.cookie
 			.split('; ')
