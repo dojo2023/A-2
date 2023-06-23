@@ -63,8 +63,12 @@ public class HomeServlet extends HttpServlet {
 		String startTime = ltd.select(userId).get(0).getStartTime();
 		String lastTrainId = ltd.select(userId).get(0).getLastTrainId();
 		String goalTime = ltd.select(userId).get(0).getGoalTime();
+		String overFlag = ltd.select(userId).get(0).getOverFlag();
 
-		request.setAttribute("startTime", startTime);
+
+		if(startTime != null) {
+
+
 		String times[] = new String[2];
 		 times = startTime.split(":");
 
@@ -75,34 +79,25 @@ public class HomeServlet extends HttpServlet {
 	     Calendar now = Calendar.getInstance(); //現在時刻
 		 Calendar cn1 = Calendar.getInstance(); //終電時刻を超えたか判定するための時刻
 
+		 //5時を超えたか判定するための時刻
+		 Calendar cn2 = Calendar.getInstance();
+
+		 cn2.set(now.get(Calendar.YEAR), now.get(Calendar.MONTH), now.get(Calendar.DATE), 5,0,0);
 			//位置情報検索ボタンを押した日の終電時刻を設定する
 		cn1.set(now.get(Calendar.YEAR), now.get(Calendar.MONTH), now.get(Calendar.DATE), Integer.parseInt(hour) , Integer.parseInt(minutes) ,0);
-		if (now.compareTo(cn1) >= 0) {
+		//現在時刻と終電を比較して現在時刻の方が大きいとき、かつ現在時刻と午前５時を比較して現在時刻の方が小さいとき
+		//つまり！終電が終わった時間～朝の５時までの間
+		if (now.compareTo(cn1) >= 0 && now.compareTo(cn2) <= 0) {
 			LastTrainsDao trainDao = new LastTrainsDao();
-			String overFlag = "true";
+			overFlag = "TRUE";
 
 			trainDao.update(lastTrainId,startTime,goalTime,overFlag,userId);
-
-		}
-		
-		//5時を超えたか判定するための時刻
-		Calendar cn2 = Calendar.getInstance(); 
-		cn2.set(now.get(Calendar.YEAR), now.get(Calendar.MONTH), now.get(Calendar.DATE), 5,0,0);
-		
-		
-		if (now.compareTo(cn2) >= 0) {
-			LastTrainsDao trainDao = new LastTrainsDao();
-			String overFlag = "false";
-			
-			trainDao.update("","","",overFlag,userId);
-			
 			Cookie overFlagcookie = null;
-			
 			if (cookie != null){
 				for (int i = 0 ; i < cookie.length ; i++){
 					if (cookie[i].getName().equals("overFlag")){
 					overFlagcookie = cookie[i];
-				    overFlagcookie.setValue("false");
+				    overFlagcookie.setValue(overFlag);
 				    response.addCookie(overFlagcookie);
 					break;
 					}
@@ -110,6 +105,29 @@ public class HomeServlet extends HttpServlet {
 			}
 		}
 
+
+		//終電時間を過ぎていて、午前五時も過ぎているとき
+		if (overFlag.equals("TRUE") && now.compareTo(cn2) >= 0) {
+			LastTrainsDao trainDao = new LastTrainsDao();
+			overFlag = "FALSE";
+
+			trainDao.update("","","",overFlag,userId);
+
+			Cookie overFlagcookie = null;
+
+			if (cookie != null){
+				for (int i = 0 ; i < cookie.length ; i++){
+					if (cookie[i].getName().equals("overFlag")){
+					overFlagcookie = cookie[i];
+				    overFlagcookie.setValue(overFlag);
+				    response.addCookie(overFlagcookie);
+					break;
+					}
+				}
+			}
+		}
+		}
+		request.setAttribute("startTime", startTime);
 		// フォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/home.jsp");
 		dispatcher.forward(request, response);
