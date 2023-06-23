@@ -46,7 +46,6 @@ function search_position() {
 }
 //寄り駅変更の許可
 function notice() {
-console.log("test")
 	if (document.getElementById("alert_check").checked) {
 		// チェックボックスがONのときの処理
 		const button = document.getElementById("SUBMIT");
