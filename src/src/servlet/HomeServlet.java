@@ -84,6 +84,31 @@ public class HomeServlet extends HttpServlet {
 			trainDao.update(lastTrainId,startTime,goalTime,overFlag,userId);
 
 		}
+		
+		//5時を超えたか判定するための時刻
+		Calendar cn2 = Calendar.getInstance(); 
+		cn2.set(now.get(Calendar.YEAR), now.get(Calendar.MONTH), now.get(Calendar.DATE), 5,0,0);
+		
+		
+		if (now.compareTo(cn2) >= 0) {
+			LastTrainsDao trainDao = new LastTrainsDao();
+			String overFlag = "false";
+			
+			trainDao.update("","","",overFlag,userId);
+			
+			Cookie overFlagcookie = null;
+			
+			if (cookie != null){
+				for (int i = 0 ; i < cookie.length ; i++){
+					if (cookie[i].getName().equals("overFlag")){
+					overFlagcookie = cookie[i];
+				    overFlagcookie.setValue("false");
+				    response.addCookie(overFlagcookie);
+					break;
+					}
+				}
+			}
+		}
 
 		// フォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/home.jsp");
