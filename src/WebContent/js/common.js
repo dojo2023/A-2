@@ -66,8 +66,8 @@ function monitorTime() {
 		if (startMinutes < 0) {
 			startMinutes += 60;
 		}
-		var goalHours = goalTrainHours - nowHours;
-		var goalMinutes = goalTrainMinutes - nowMinutes;
+		var goalHours = goalStationHours - nowHours;
+		var goalMinutes = goalStationMinutes - nowMinutes;
 		var goalSeconds = (60 - nowSeconds) % 60;
 		if (goalHours < 0) {
 			goalHours = goalHours + 24;
