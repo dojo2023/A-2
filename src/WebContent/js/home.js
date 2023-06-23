@@ -54,7 +54,7 @@ const overFlag = document.cookie
 	.find(row => row.startsWith('overFlag'))
 	.split('=')[1];
 
-if (overFlag === 'true') {
+if (overFlag === 'TRUE') {
 	document.getElementById("timer_text").innerHTML = "本日の終電は終了しました。";
 	clearInterval(countdown);
 
