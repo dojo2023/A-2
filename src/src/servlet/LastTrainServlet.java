@@ -43,10 +43,15 @@ public class LastTrainServlet extends HttpServlet {
 		// 以上ログインの確認
 		HttpSession session = request.getSession();
 		String st = (String)session.getAttribute("startTime");
+		String gt = (String)session.getAttribute("goalTime");
 		//終電時刻を取得するたびにはいるよ
 		Cookie cookieSt = new Cookie("startTime", st);
 		cookieSt.setMaxAge(3 * 24 * 60 * 60);
 		response.addCookie(cookieSt);
+
+		Cookie cookieGt = new Cookie("goalTime", gt);
+		cookieGt.setMaxAge(3 * 24 * 60 * 60);
+		response.addCookie(cookieGt);
 
 		// 終電表示画面にフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/last_train.jsp");

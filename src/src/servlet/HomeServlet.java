@@ -143,6 +143,10 @@ public class HomeServlet extends HttpServlet {
 			request.setAttribute("msg", "成功したよ");
 		}
 
+		Cookie cookieCheck = new Cookie("check", check);
+		cookieCheck.setMaxAge(3 * 24 * 60 * 60);
+		response.addCookie(cookieCheck);
+
 		//ArrayListをインスタンス化
 		ArrayList<String> list = new ArrayList<>();
 
@@ -242,6 +246,7 @@ public class HomeServlet extends HttpServlet {
 		session.setAttribute("startTime", startTime);
 		session.setAttribute("lineName", lineName);
 		session.setAttribute("stationName", stationName);
+		session.setAttribute("goalTime", goalTime);
 		response.sendRedirect("/syuudeen/LastTrainServlet");
 	}
 		//ここまで来たらjspに勝手に処理が戻る
