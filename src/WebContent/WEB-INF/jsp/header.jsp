@@ -24,8 +24,8 @@
 
 		<nav class="menu_list">
 			<ul>
-				<li>最寄り駅変更</li>
-				<li>カレンダー</li>
+				<li><a href="/syuudeen/ChangeNearestServlet">最寄り駅変更</a></li>
+				<li><a href="/syuudeen/CalenderServlet">カレンダー</a></li>
 			</ul>
 		</nav>
 
