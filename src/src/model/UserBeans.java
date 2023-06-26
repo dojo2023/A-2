@@ -7,6 +7,7 @@ public class UserBeans implements Serializable {
 	private String userPw;
 	private String stationHome;
 	private String userAlert;
+	private String lastAccess;
 
 	public String getUserId() {
 		return userId;
@@ -38,6 +39,14 @@ public class UserBeans implements Serializable {
 
 	public void setUserAlert(String userAlert) {
 		this.userAlert = userAlert;
+	}
+
+	public String getlastAccess() {
+		return lastAccess;
+	}
+
+	public void setLastAccess(String lastAccess) {
+		this.lastAccess = lastAccess;
 	}
 
 }

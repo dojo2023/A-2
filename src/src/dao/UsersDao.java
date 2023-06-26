@@ -71,7 +71,7 @@ public class UsersDao {
 
 
 	// 引数cardで指定されたレコードを登録し、成功したらtrueを返す
-	public boolean insert(String userId,String userPw,String stationId) {
+	public boolean insert(String userId,String userPw,String stationId,String lastAccess) {
 		Connection conn = null;
 		boolean result = false;
 
@@ -83,13 +83,14 @@ public class UsersDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/src/data/syuudeen", "sa", "");
 
 			// SQL文を準備する
-			String sql = "insert into users (USER_ID, USER_PW, STATION_HOME) values (?, ?, ?)";
+			String sql = "insert into users (USER_ID, USER_PW, STATION_HOME, LAST_ACCESS) values (?, ?, ?, ?)";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
 				pStmt.setString(1, userId);
 				pStmt.setString(2, userPw);
 				pStmt.setString(3, stationId);
+				pStmt.setString(4, lastAccess);
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
 				result = true;
@@ -117,7 +118,7 @@ public class UsersDao {
 		return result;
 	}
 
-	public boolean update(String userId,String check, String stationHome) {
+	public boolean update(String userId,String check, String stationHome, String lastAccess) {
 		Connection conn = null;
 		boolean result = false;
 
@@ -129,7 +130,7 @@ public class UsersDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/src/data/syuudeen", "sa", "");
 
 			// SQL文を準備する
-			String sql = "update USERS set STATION_HOME = ?, USER_ALERT = ? where USER_ID = ?";
+			String sql = "update USERS set STATION_HOME = ?, USER_ALERT = ?, LAST_ACCESS=?, where USER_ID = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
@@ -145,8 +146,14 @@ public class UsersDao {
 			else {
 				pStmt.setString(2, null);
 			}
+			if(!lastAccess.equals("")) {
+				pStmt.setString(3, lastAccess);
+			}
+			else {
+				pStmt.setString(3, null);
+			}
 
-			pStmt.setString(3, userId);
+			pStmt.setString(4, userId);
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
 				result = true;
@@ -204,6 +211,7 @@ public List<UserBeans> select(String userId) {
 			card.setUserPw(rs.getString("USER_PW"));
 			card.setStationHome(rs.getString("STATION_HOME"));
 			card.setUserAlert(rs.getString("USER_ALERT"));
+			card.setUserAlert(rs.getString("LAST_ACCESS"));
 
 			cardList.add(card);
 		}
