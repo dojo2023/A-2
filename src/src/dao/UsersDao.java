@@ -71,7 +71,7 @@ public class UsersDao {
 
 
 	// 引数cardで指定されたレコードを登録し、成功したらtrueを返す
-	public boolean insert(String userId,String userPw,String stationId,String lastAccess) {
+	public boolean insert(String userId,String userPw,String stationId) {
 		Connection conn = null;
 		boolean result = false;
 
@@ -83,14 +83,13 @@ public class UsersDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/src/data/syuudeen", "sa", "");
 
 			// SQL文を準備する
-			String sql = "insert into users (USER_ID, USER_PW, STATION_HOME, LAST_ACCESS) values (?, ?, ?, ?)";
+			String sql = "insert into users (USER_ID, USER_PW, STATION_HOME,) values (?, ?, ?)";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
 				pStmt.setString(1, userId);
 				pStmt.setString(2, userPw);
 				pStmt.setString(3, stationId);
-				pStmt.setString(4, lastAccess);
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
 				result = true;
