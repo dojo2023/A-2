@@ -931,3 +931,19 @@ station_home varchar (8) not null,	/*最寄り駅の駅ID*/
 user_alert boolean  default false  not null/*通知*/
 last_accese varchar (24) /*最終アクセス日時*/　
 ) [42001-200]
+2023-06-26 13:47:48 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: SQLステートメントに文法エラーがあります "UPDATE USERS SET STATION_HOME = ?, USER_ALERT = ?, LAST_ACCESS=?, WHERE[*] USER_ID = ? "; 期待されるステートメント "identifier"
+Syntax error in SQL statement "UPDATE USERS SET STATION_HOME = ?, USER_ALERT = ?, LAST_ACCESS=?, WHERE[*] USER_ID = ? "; expected "identifier"; SQL statement:
+update USERS set STATION_HOME = ?, USER_ALERT = ?, LAST_ACCESS=?, where USER_ID = ? [42001-199]
+2023-06-26 13:47:50 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: SQLステートメントに文法エラーがあります "UPDATE USERS SET STATION_HOME = ?, USER_ALERT = ?, LAST_ACCESS=?, WHERE[*] USER_ID = ? "; 期待されるステートメント "identifier"
+Syntax error in SQL statement "UPDATE USERS SET STATION_HOME = ?, USER_ALERT = ?, LAST_ACCESS=?, WHERE[*] USER_ID = ? "; expected "identifier"; SQL statement:
+update USERS set STATION_HOME = ?, USER_ALERT = ?, LAST_ACCESS=?, where USER_ID = ? [42001-199]
+2023-06-26 13:50:51 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: SQLステートメントに文法エラーがあります "UPDATE USERS SET STATION_HOME = ?, USER_ALERT = ?, LAST_ACCESS=?, WHERE[*] USER_ID = ? "; 期待されるステートメント "identifier"
+Syntax error in SQL statement "UPDATE USERS SET STATION_HOME = ?, USER_ALERT = ?, LAST_ACCESS=?, WHERE[*] USER_ID = ? "; expected "identifier"; SQL statement:
+update USERS set STATION_HOME = ?, USER_ALERT = ?, LAST_ACCESS=?, where USER_ID = ? [42001-199]
+2023-06-26 13:50:53 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: SQLステートメントに文法エラーがあります "UPDATE USERS SET STATION_HOME = ?, USER_ALERT = ?, LAST_ACCESS=?, WHERE[*] USER_ID = ? "; 期待されるステートメント "identifier"
+Syntax error in SQL statement "UPDATE USERS SET STATION_HOME = ?, USER_ALERT = ?, LAST_ACCESS=?, WHERE[*] USER_ID = ? "; expected "identifier"; SQL statement:
+update USERS set STATION_HOME = ?, USER_ALERT = ?, LAST_ACCESS=?, where USER_ID = ? [42001-199]

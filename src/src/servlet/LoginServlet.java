@@ -1,6 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.LastTrainsDao;
 import dao.UsersDao;
+
 /**
  * Servlet implementation class LoginServlet
  */
@@ -54,7 +57,6 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		// リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
 		String id = request.getParameter("user_id");
@@ -68,14 +70,22 @@ public class LoginServlet extends HttpServlet {
 			cookie.setMaxAge(3 * 24 * 60 * 60);
 			response.addCookie(cookie);
 
-		LastTrainsDao ltd = new LastTrainsDao();
-		String overFlag = ltd.select(id).get(0).getOverFlag();
+			// LastTrainDaoを用意してoverFlagをcookieに設定
+			LastTrainsDao ltd = new LastTrainsDao();
+			String overFlag = ltd.select(id).get(0).getOverFlag();
 
-		Cookie cookie2 = new Cookie("overFlag", overFlag);
-		cookie2.setMaxAge(3 * 24 * 60 * 60);
-		response.addCookie(cookie2);
+			Cookie cookie2 = new Cookie("overFlag", overFlag);
+			cookie2.setMaxAge(3 * 24 * 60 * 60);
+			response.addCookie(cookie2);
 
+			String userAlert = UDao.select(id).get(0).getUserAlert();
+			String stationHome = UDao.select(id).get(0).getStationHome();
 
+			// 最終アクセス日時をDBに追加
+			Calendar cl = Calendar.getInstance();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss:SSS");
+			String lastAccess = sdf.format(cl.getTime());
+			UDao.update(id, userAlert, stationHome, lastAccess);
 
 			// メニューサーブレットにリダイレクトする
 			response.sendRedirect("/syuudeen/HomeServlet");

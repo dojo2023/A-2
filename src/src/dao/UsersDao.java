@@ -83,7 +83,7 @@ public class UsersDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/src/data/syuudeen", "sa", "");
 
 			// SQL文を準備する
-			String sql = "insert into users (USER_ID, USER_PW, STATION_HOME,) values (?, ?, ?)";
+			String sql = "insert into users (USER_ID, USER_PW, STATION_HOME) values (?, ?, ?)";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
@@ -129,7 +129,7 @@ public class UsersDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/src/data/syuudeen", "sa", "");
 
 			// SQL文を準備する
-			String sql = "update USERS set STATION_HOME = ?, USER_ALERT = ?, LAST_ACCESS=?, where USER_ID = ?";
+			String sql = "update USERS set STATION_HOME = ?, USER_ALERT = ?, LAST_ACCESS=? where USER_ID = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
@@ -210,7 +210,7 @@ public List<UserBeans> select(String userId) {
 			card.setUserPw(rs.getString("USER_PW"));
 			card.setStationHome(rs.getString("STATION_HOME"));
 			card.setUserAlert(rs.getString("USER_ALERT"));
-			card.setUserAlert(rs.getString("LAST_ACCESS"));
+			card.setLastAccess(rs.getString("LAST_ACCESS"));
 
 			cardList.add(card);
 		}
