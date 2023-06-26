@@ -126,6 +126,7 @@ public class HomeServlet extends HttpServlet {
 						if (cookie[i].getName().equals("overFlag")) {
 							overFlagcookie = cookie[i];
 							overFlagcookie.setValue(overFlag);
+							overFlagcookie.setMaxAge(overFlagcookie.getMaxAge());
 							response.addCookie(overFlagcookie);
 							break;
 						}
@@ -202,9 +203,18 @@ public class HomeServlet extends HttpServlet {
 				request.setAttribute("msg", "成功したよ");
 			}
 
-			Cookie cookieCheck = new Cookie("check", check);
-			cookieCheck.setMaxAge(3 * 24 * 60 * 60);
-			response.addCookie(cookieCheck);
+			Cookie checkCookie = null;
+			if (cookie != null) {
+				for (int i = 0; i < cookie.length; i++) {
+					if (cookie[i].getName().equals("check")) {
+						checkCookie = cookie[i];
+						checkCookie.setValue(check);
+						checkCookie.setMaxAge(checkCookie.getMaxAge());
+						response.addCookie(checkCookie);
+						break;
+					}
+				}
+			}
 
 			//ArrayListをインスタンス化
 			ArrayList<String> list = new ArrayList<>();

@@ -12,8 +12,8 @@
 <body>
 <div class="content">
 <div class="inner">
-<span id = "home">heda</span>
-<span id = "logo">logo</span>
+<span id = "home"><a href="/syuudeen/HomeServlet"><img src="/syuudeen/img/syuudeen-logo.png"></a></span>
+<span id = "logo"><img src="/syuudeen/img/syuudeen-logo.png"></span>
 <span class = "menu_2">
 <span class = "menu"><img class="menu_open" src="/syuudeen/img/ham-menu-open.png">
 					<img class="menu_close" src="/syuudeen/img/ham-menu-close.png">

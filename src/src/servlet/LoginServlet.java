@@ -79,6 +79,10 @@ public class LoginServlet extends HttpServlet {
 			response.addCookie(cookie2);
 
 			String userAlert = UDao.select(id).get(0).getUserAlert();
+			Cookie cookieCheck = new Cookie("check", userAlert);
+			cookieCheck.setMaxAge(3 * 24 * 60 * 60);
+			response.addCookie(cookieCheck);
+
 			String stationHome = UDao.select(id).get(0).getStationHome();
 
 			// 最終アクセス日時をDBに追加

@@ -15,6 +15,7 @@ body {
   background-color: black;
   position: relative;
   overflow-x: hidden;
+  text-align: center;
 }
 .inner {
 	justify-content: space-between;
@@ -41,15 +42,15 @@ body {
 	.menu_open {
 		opacity: 1;
 	}
-	
+
 		.menu_open.active {
 			opacity: 0;
 		}
-		
+
 	.menu_close {
 		opacity: 0;
 	}
-	
+
 		.menu_close.active {
 			opacity: 1;
 		}
@@ -71,7 +72,7 @@ body {
 .menu_list.active {
 	transform: translate(0, 0);
 	}
-	
+
 .menu_list ul {
 	padding-inline: 0;
 }

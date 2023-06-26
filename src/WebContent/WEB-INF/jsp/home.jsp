@@ -28,7 +28,7 @@
 <input type="hidden" id="hidden_position" name="hidden_position" value="">
 </form>
 
- <input type="button" id="push" onclick="return push()" value="クリックするとプッシュ通知が送られます">
+ <input type="button" id="push" onclick="push('テスト通知')" value="クリックするとプッシュ通知が送られます">
 
 </div>
 <div id = "plan"><table></table></div>
