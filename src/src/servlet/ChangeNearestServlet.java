@@ -130,6 +130,7 @@ public class ChangeNearestServlet extends HttpServlet {
 		else {
 			String stationId = request.getParameter("station_id");
 			String userAlert = "";
+			String lastAccess = "";
 
 			UsersDao uDao = new UsersDao();
 			UserBeans ub = new UserBeans();
@@ -138,8 +139,8 @@ public class ChangeNearestServlet extends HttpServlet {
 			ub = ul.get(0);
 
 			userAlert = ub.getUserAlert();
-			// TODO selectでuserIdに指定したユーザのuserAlertの状態を取得
-			boolean result = uDao.update(userId, userAlert, stationId);
+			lastAccess = ub.getlastAccess();
+			boolean result = uDao.update(userId, userAlert, stationId, lastAccess);
 			if(result==false) {
 				request.setAttribute("msg", "失敗したよ");
 			}else {
