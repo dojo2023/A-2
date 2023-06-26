@@ -18,6 +18,7 @@
 </div>
 
 <div id = "timer"><div id = "timer_img"></div><div id = "timer_text"></div></div>
+<input type="hidden" id="hidden_alert" value="${userAlert}">
 <input type="hidden" id="hidden_time" value="${startTime}">
 <div id = "search_position_button">
 <form name="search_form" action="/syuudeen/HomeServlet" method="POST">
