@@ -14,10 +14,16 @@
 		<div id = "logo_login">logo</div>
 			<form id="user_login" method="POST" action="/syuudeen/LoginServlet">
 				<div id="user_login_area">
-					<input type="text" id="user_id" placeholder="ID" name="user_id" value="${param.user_id }">
+				<div class="form_group">
+					<input type="text" id="user_id" placeholder="ID" name="user_id" value="${param.user_id }" required="">
+					<label for="id" class="form_label">ID</label>
+				</div>	
+				<div class="form_group">
 					<input type="password" id="user_pw" placeholder="パスワード" name="user_pw">
 					<span id="pw_check_button" class="fa fa-eye" onclick="pushHideButton()"></span>
 					${result}
+					<label for="pw" class="form_label">パスワード</label>
+				</div>	
 				</div>
 				<div id="login_button">
 					<input type="submit" value="ログイン" id="login">
