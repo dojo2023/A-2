@@ -32,6 +32,13 @@ function notice() {
 		});
 }
 
+if (document.getElementById('hidden_alert').value === 'TRUE')  {
+	document.getElementById("alert_check").checked = true;
+}
+else {
+	document.getElementById("alert_check").checked = false;
+}
+
 var pos = "";
 
 function success(pos) {

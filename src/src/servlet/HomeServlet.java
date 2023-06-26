@@ -144,6 +144,7 @@ public class HomeServlet extends HttpServlet {
 		ud.update(userId, userAlert, stationHome, lastAccess);
 
 		request.setAttribute("startTime", startTime);
+		request.setAttribute("userAlert", userAlert);
 		// フォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/home.jsp");
 		dispatcher.forward(request, response);
