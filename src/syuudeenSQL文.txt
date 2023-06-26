@@ -5,6 +5,7 @@ user_id varchar (12) primary key, /*ユーザーID*/
 user_pw varchar (20) not null,		/*PW*/
 station_home varchar (8) not null,	/*最寄り駅の駅ID*/						
 user_alert boolean  default false  not null/*通知*/
+last_accese varchar (24) /*最終アクセス日時*/　
 );	
 
 create table plans(			
