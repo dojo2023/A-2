@@ -19,27 +19,33 @@
 
  <div id="user_register_area">
  
+  ID 
   <div class="form_group">
   <input type="text" placeholder="１文字以上１２文字以下の半角英数字で入力してください" id="user_id" name="user_id"value="${param.user_id }">
   <label for="id" class="form_label">１文字以上１２文字以下の半角英数字で入力してください</label>
   </div>
   
+  PW
   <div class="form_group">
   <input type="password" placeholder="８文字以上２０文字以下の半角英数字で入力してください" id="user_pw" name="user_pw">
-  
+  <label for="id" class="form_label">８文字以上２０文字以下の半角英数字で入力してください</label>
   </div>
+  
+  PW
+  <div class="form_group">
   <input type="password"  placeholder="パスワードをもう一度入力してください" id="pw_check" name="pw_check">
-    <span id="pw_check_button" class="fa fa-eye" onclick="pushHideButton()"></span>
- </div>
-
+  <span id="pw_check_button" class="fa fa-eye" onclick="pushHideButton()"></span>
+  <label for="id" class="form_label">８文字以上２０文字以下の半角英数字で入力してください</label>
+  </div>
+  </div>
  <div id="station_display_area">
-  <div id="station">
+  <div id="station"> 
   駅名を表示
  </div>
 <input type="hidden" id="station_id" name="station_id" value="">
   <!-- onclickはjsです -->
-   <input type="button" value="最寄り駅検索" onclick="search_position()">
-   <label id="check_message">※自宅で登録してください</label>
+   <input type="button" value="最寄り駅検索" onclick="search_position()" >
+   <div><label id="check_message">※自宅で登録してください</label></div>
 
  </div>
 

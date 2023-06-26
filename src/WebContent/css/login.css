@@ -35,6 +35,7 @@
 }
 
 .form_label {
+  white-space: nowrap;
   position: absolute;
   top: 0;
   display: block;
@@ -65,7 +66,11 @@
 /* reset input */
 #user_id:required, .form_field:invalid {
   box-shadow: none;
-}      
+}
+
+#emg{
+	white-space: nowrap;
+}
 
      /* #user_login {
         border-width: thin;
@@ -137,7 +142,7 @@ input[type="submit"] {
   user-select: none;
 }
 
-#login:hover,:focus {
+#login:hover {
   color: #ffffff;
   background: #008cff;
   border: 1px solid #008cff;
@@ -148,4 +153,4 @@ input[type="submit"] {
               0 0 20px #008cff,
               0 0 50px #008cff,
               0 0 100px #008cff;
-}      
+}    
