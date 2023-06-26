@@ -4,3 +4,133 @@
 #user_id {
         border: none; /* デフォルトの枠線を消す */
       }
+/*ユーザーID*/      
+.form_group {
+  position: relative;
+  padding: 10px 0 0;
+  width: 100%;
+  max-width: 180px;
+}
+
+#user_id {
+  font-family: inherit;
+  width: 450px;
+  border: none;
+  border-bottom: 2px solid #9b9b9b;
+  outline: 0;
+  font-size: 17px;
+  color: #fff;
+  padding: 0;
+  background: transparent;
+  transition: border-color 0.2s;
+}
+
+#user_id::placeholder {
+  color: transparent;
+}
+
+#user_id:placeholder-shown ~ .form_label {
+  font-size: 17px;
+  cursor: text;
+  top: 20px;
+}
+
+.form_label {
+  white-space: nowrap;
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 17px;
+  color: #9b9b9b;
+  pointer-events: none;
+}
+
+#user_id:focus {
+  padding-bottom: 6px;
+  font-weight: 700;
+  border-width: 3px;
+  border-image: linear-gradient(to right, #116399, #38caef);
+  border-image-slice: 1;
+}
+
+#user_id:focus ~ .form_label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 17px;
+  color: #38caef;
+  font-weight: 700;
+}
+
+/* reset input */
+#user_id:required, .form_field:invalid {
+  box-shadow: none;
+}    
+
+  
+/*PW*/
+.form_group {
+  position: relative;
+  padding: 10px 0 0;
+  width: 100%;
+  max-width: 180px;
+}
+
+#user_id {
+  font-family: inherit;
+  width: 450px;
+  border: none;
+  border-bottom: 2px solid #9b9b9b;
+  outline: 0;
+  font-size: 17px;
+  color: #fff;
+  padding: 0;
+  background: transparent;
+  transition: border-color 0.2s;
+}
+
+#user_id::placeholder {
+  color: transparent;
+}
+
+#user_id:placeholder-shown ~ .form_label {
+  font-size: 17px;
+  cursor: text;
+  top: 20px;
+}
+
+.form_label {
+  white-space: nowrap;
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 17px;
+  color: #9b9b9b;
+  pointer-events: none;
+}
+
+#user_id:focus {
+  padding-bottom: 6px;
+  font-weight: 700;
+  border-width: 3px;
+  border-image: linear-gradient(to right, #116399, #38caef);
+  border-image-slice: 1;
+}
+
+#user_id:focus ~ .form_label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 17px;
+  color: #38caef;
+  font-weight: 700;
+}
+
+/* reset input */
+#user_id:required, .form_field:invalid {
+  box-shadow: none;
+}    
