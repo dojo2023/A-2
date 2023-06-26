@@ -21,7 +21,9 @@
 <input type="hidden" id="hidden_time" value="${startTime}">
 <div id = "search_position_button">
 <form name="search_form" action="/syuudeen/HomeServlet" method="POST">
+
 <input type="button" value="位置情報検索" id="search_position" name="search_position" onclick="position()">
+
 <input type="hidden" id="hidden_position" name="hidden_position" value="">
 </form>
 
