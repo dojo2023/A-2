@@ -897,3 +897,37 @@ Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/dojo6/src
 	at org.h2.mvstore.FileStore.open(FileStore.java:172)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:390)
 	... 44 more
+2023-06-26 11:57:01 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: SQLステートメントに文法エラーがあります "DROP LAST_TRAINS[*]"; 期待されるステートメント "TABLE, INDEX, USER, SEQUENCE, CONSTANT, TRIGGER, VIEW, ROLE, ALIAS, SCHEMA, ALL, DOMAIN, TYPE, DATATYPE, AGGREGATE, SYNONYM"
+Syntax error in SQL statement "DROP LAST_TRAINS[*]"; expected "TABLE, INDEX, USER, SEQUENCE, CONSTANT, TRIGGER, VIEW, ROLE, ALIAS, SCHEMA, ALL, DOMAIN, TYPE, DATATYPE, AGGREGATE, SYNONYM"; SQL statement:
+drop LAST_TRAINS [42001-200]
+2023-06-26 11:57:08 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: SQLステートメントに文法エラーがあります "DROP PLANS[*]"; 期待されるステートメント "TABLE, INDEX, USER, SEQUENCE, CONSTANT, TRIGGER, VIEW, ROLE, ALIAS, SCHEMA, ALL, DOMAIN, TYPE, DATATYPE, AGGREGATE, SYNONYM"
+Syntax error in SQL statement "DROP PLANS[*]"; expected "TABLE, INDEX, USER, SEQUENCE, CONSTANT, TRIGGER, VIEW, ROLE, ALIAS, SCHEMA, ALL, DOMAIN, TYPE, DATATYPE, AGGREGATE, SYNONYM"; SQL statement:
+drop PLANS [42001-200]
+2023-06-26 11:57:23 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: SQLステートメントに文法エラーがあります "DROP PLANS[*]"; 期待されるステートメント "TABLE, INDEX, USER, SEQUENCE, CONSTANT, TRIGGER, VIEW, ROLE, ALIAS, SCHEMA, ALL, DOMAIN, TYPE, DATATYPE, AGGREGATE, SYNONYM"
+Syntax error in SQL statement "DROP PLANS[*]"; expected "TABLE, INDEX, USER, SEQUENCE, CONSTANT, TRIGGER, VIEW, ROLE, ALIAS, SCHEMA, ALL, DOMAIN, TYPE, DATATYPE, AGGREGATE, SYNONYM"; SQL statement:
+drop PLANS [42001-200]
+2023-06-26 11:58:27 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: SQLステートメントに文法エラーがあります "CREATE TABLE USERS (						
+USER_ID VARCHAR (12) PRIMARY KEY,           					
+USER_PW VARCHAR (20) NOT NULL,		      
+STATION_HOME VARCHAR (8) NOT NULL,	            						
+USER_ALERT BOOLEAN  DEFAULT FALSE  NOT NULL      
+LAST_ACCESE[*] VARCHAR (24)             　
+)"; 期待されるステートメント "AUTO_INCREMENT, BIGSERIAL, SERIAL, IDENTITY, NULL_TO_DEFAULT, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, PRIMARY, UNIQUE, NOT, NULL, COMMENT, CHECK, REFERENCES, ,, )"
+Syntax error in SQL statement "CREATE TABLE USERS (						
+USER_ID VARCHAR (12) PRIMARY KEY,           					
+USER_PW VARCHAR (20) NOT NULL,		      
+STATION_HOME VARCHAR (8) NOT NULL,	            						
+USER_ALERT BOOLEAN  DEFAULT FALSE  NOT NULL      
+LAST_ACCESE[*] VARCHAR (24)             　
+)"; expected "AUTO_INCREMENT, BIGSERIAL, SERIAL, IDENTITY, NULL_TO_DEFAULT, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, PRIMARY, UNIQUE, NOT, NULL, COMMENT, CHECK, REFERENCES, ,, )"; SQL statement:
+create table users (						
+user_id varchar (12) primary key, /*ユーザーID*/					
+user_pw varchar (20) not null,		/*PW*/
+station_home varchar (8) not null,	/*最寄り駅の駅ID*/						
+user_alert boolean  default false  not null/*通知*/
+last_accese varchar (24) /*最終アクセス日時*/　
+) [42001-200]
