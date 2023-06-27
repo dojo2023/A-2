@@ -24,8 +24,16 @@ body {
 }
 
 .inner * {
-	padding: 10px;              /* 余白指定 */
     height: 100px;              /* 高さ指定 */
+}
+
+.inner span{
+	padding: 10px;              /* 余白指定 */
+}
+
+span img{
+	filter: invert(1);
+	vertical-align: middle;
 }
 
 .menu_2{
