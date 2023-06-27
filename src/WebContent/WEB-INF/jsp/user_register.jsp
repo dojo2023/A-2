@@ -13,43 +13,46 @@
 
 </head>
 <body>
-<div id = "logo_register">logo</div>
+<div id = "logo_register"><img src="/syuudeen/img/syuudeen-logo.png"></div>
 
 <form id="user_register" method="POST" action="/syuudeen/UserRegisterServlet">
 
  <div id="user_register_area">
  
-  ID 
   <div class="form_group">
-  <input type="text" placeholder="１文字以上１２文字以下の半角英数字で入力してください" id="user_id" name="user_id"value="${param.user_id }">
-  <label for="id" class="form_label">１文字以上１２文字以下の半角英数字で入力してください</label>
+  <input type="text" placeholder="１～１２文字の半角英数字で入力してください" id="user_id" name="user_id"value="${param.user_id }">
+  <div id="anim">
+    <span class="tooltip" data-tooltip="１～１２文字の半角英数字で入力してください">?</span>
+    </div>
+  <label for="id" class="form_label">ID</label>
   </div>
   
-  PW
   <div class="form_group">
-  <input type="password" placeholder="８文字以上２０文字以下の半角英数字で入力してください" id="user_pw" name="user_pw">
-  <label for="id" class="form_label">８文字以上２０文字以下の半角英数字で入力してください</label>
+  <input type="password" placeholder="８～２０文字の半角英数字で入力してください" id="user_pw" name="user_pw">
+  <div id="anim">
+    <span class="tooltip" data-tooltip="８～２０文字の半角英数字で入力してください">?</span>
+    </div>
+  <label for="id" class="form_label">パスワード</label>
   </div>
   
-  PW
   <div class="form_group">
   <input type="password"  placeholder="パスワードをもう一度入力してください" id="pw_check" name="pw_check">
   <span id="pw_check_button" class="fa fa-eye" onclick="pushHideButton()"></span>
-  <label for="id" class="form_label">８文字以上２０文字以下の半角英数字で入力してください</label>
+  <label for="id" class="form_label">パスワードチェック</label>
   </div>
   </div>
  <div id="station_display_area">
   <div id="station"> 
-  駅名を表示
  </div>
 <input type="hidden" id="station_id" name="station_id" value="">
   <!-- onclickはjsです -->
-   <input type="button" value="最寄り駅検索" onclick="search_position()" >
+   <input type="button" value="最寄り駅検索" onclick="search_position()" id = "search_button" >
+   
+   <div id="register_result_false">${errMsg}</div>
+   
    <div><label id="check_message">※自宅で登録してください</label></div>
 
  </div>
-
- <div id="register_result_false">${errMsg}</div>
 
  <input type="submit" value="登録" id="register" name="SUBMIT">
 
