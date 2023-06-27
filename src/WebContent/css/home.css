@@ -5,15 +5,6 @@ html {
   font-family: fantasy
 }
 
-/* bodyタグ */
-body {
-  background-size: cover;
-  margin: 0 0 0 0;		/* マージンなし（後で個別に設定） */
-  padding: 0 0 0 0;		/* パディングなし（後で個別に設定） */
-  color: rgb(255, 255, 255);
-  font-size: 30px;
-  background-color: black;
-}
 input[type="button"] {
   padding: 10px 20px;
   text-transform: uppercase;
@@ -40,4 +31,26 @@ input[type="button"] {
               0 0 20px #008cff,
               0 0 50px #008cff,
               0 0 100px #008cff;
+}
+
+#timer{
+	margin:25% 0 0 0;
+	position:relative;
+}
+
+#timer_img{
+	height:50%;
+	width:80%;
+}
+
+#timer_text{
+	position:absolute;
+	top:50%;
+	left:50%;
+	transform:translate(-50%, -50%);
+}
+
+#plan table{
+	text-align:center;
+	display:inline-block;
 }

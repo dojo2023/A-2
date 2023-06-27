@@ -8,14 +8,19 @@ html {
 /* bodyタグ */
 body {
   background-size: cover;
+  background-position:center;
   margin: 0 0 0 0;		/* マージンなし（後で個別に設定） */
   padding: 0 0 0 0;		/* パディングなし（後で個別に設定） */
   color: rgb(255, 255, 255);
   font-size: 30px;
-  background-color: black;
+  background-color: #aca2ff;
+  background-image: linear-gradient(0deg, #aca2ff 0%, #3d3bff 47%, #060032 100%);
+  background-repeat:no-repeat;
   position: relative;
   overflow-x: hidden;
   text-align: center;
+  height:100vh;
+  width:100%;
 }
 .inner {
 	justify-content: space-between;
