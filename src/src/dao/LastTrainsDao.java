@@ -84,10 +84,10 @@ public class LastTrainsDao {
 	 * @author katahira, aiba
 	 *
 	 * @param	lastTrainId 検索した最寄り駅ID<br>
-	 * 		startTime 終電出発時刻<br>
-	 * 		goalTime 終電到着時刻<br>
-	 * 		overFlag 終電を超過したかどうかのフラグ<br>
-	 * 		userId DBのusersテーブルに保存されている固有のユーザーID
+	 * @param	startTime 終電出発時刻<br>
+	 * @param	goalTime 終電到着時刻<br>
+	 * @param	overFlag 終電を超過したかどうかのフラグ<br>
+	 * @param	userId DBのusersテーブルに保存されている固有のユーザーID
 	 * @return 更新処理の結果(boolean)
 	 */
 	public boolean update(String lastTrainId, String startTime, String goalTime, String overFlag, String userId) {
