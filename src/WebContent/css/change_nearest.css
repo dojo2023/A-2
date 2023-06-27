@@ -1,1 +1,22 @@
 @charset "UTF-8";
+
+span{
+	color:black;
+}
+
+#user_id{
+	position:relative;
+	background-color:white;
+	height:30%;
+	width:100%;
+}
+
+#staiton_search_position{
+	display:flex;
+
+}
+
+#station,#search_position{
+	margin:2%;
+	vertical-align: middle;
+}
