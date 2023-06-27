@@ -14,6 +14,7 @@
 </head>
 <body>
 	<%@ include file="/WEB-INF/jsp/header.jsp"%>
+	<main>
 
 	<div id="alert">
 		通知
@@ -47,5 +48,6 @@
 			</tr>
 		</table>
 	</div>
+	</main>
 </body>
 </html>
