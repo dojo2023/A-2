@@ -4,17 +4,24 @@
 #user_id {
         border: none; /* デフォルトの枠線を消す */
       }
+      
+#logo_register{
+	filter: invert(1);
+}      
+      
 /*ユーザーID*/      
 .form_group {
+  display:flex;
   position: relative;
-  padding: 10px 0 0;
+  margin: 0 auto;
+  padding: 20px  0;
   width: 100%;
   max-width: 180px;
 }
 
 #user_id {
   font-family: inherit;
-  width: 450px;
+  width: 100%;
   border: none;
   border-bottom: 2px solid #9b9b9b;
   outline: 0;
@@ -42,6 +49,7 @@
   display: block;
   transition: 0.2s;
   font-size: 17px;
+  font-family:'Noto Sans JP', sans-serif;
   color: #9b9b9b;
   pointer-events: none;
 }
@@ -69,18 +77,84 @@
   box-shadow: none;
 }    
 
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400');
+
+.tooltip {
+  position: relative;
+  background: #78C55F;
+  width:20px;
+  height:20px;
+  font-size: 15px;
+  font-family:'Noto Sans JP', sans-serif;
+  border-radius:50%;
+  color: #FFF;
+}
+
+.tooltip:after {
+  position: absolute;
+  content: '';
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+.tooltip:before {
+  border-width: 10px 8px 0 8px;
+  border-style: solid;
+  border-color: #78C55F transparent transparent transparent;
+  top: -15px;
+  transform: translateY(20px);
+}
+
+.tooltip:after {
+  content: attr(data-tooltip);
+  background: #78C55F;
+  width: 160px;
+  height: 40px;
+  font-size: 13px;
+  font-weight: 300;
+  top: -30px;
+  left: 30px;
+  padding: 10px;
+  border-radius: 5px;
+  letter-spacing: 1px;
+  transform: translateY(20px);
+}
+
+.tooltip:hover::before,
+.tooltip:hover::after {
+  opacity: 1;
+  transform: translateX(-2px);
+}
+
+@keyframes shake {
+  0% { 
+    transform: rotate(2deg);
+  }
+  50% {
+   transform: rotate(-3deg);
+  }
+  70% {
+    transform: rotate(3deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+#anim{
+  display:flex;
+}
+#anim:hover {
+  animation: shake 500ms ease-in-out forwards;
+}
+
   
 /*PW*/
-.form_group {
-  position: relative;
-  padding: 10px 0 0;
-  width: 100%;
-  max-width: 180px;
-}
 
 #user_pw {
   font-family: inherit;
-  width: 450px;
+  width: 100%;
   border: none;
   border-bottom: 2px solid #9b9b9b;
   outline: 0;
@@ -108,6 +182,7 @@
   display: block;
   transition: 0.2s;
   font-size: 17px;
+  font-family:'Noto Sans JP', sans-serif;
   color: #9b9b9b;
   pointer-events: none;
 }
@@ -137,16 +212,9 @@
 
 
 /*PW_CHECK*/
-.form_group {
-  position: relative;
-  padding: 10px 0 0;
-  width: 100%;
-  max-width: 180px;
-}
-
 #pw_check {
   font-family: inherit;
-  width: 450px;
+  width: 160px;
   border: none;
   border-bottom: 2px solid #9b9b9b;
   outline: 0;
@@ -174,6 +242,7 @@
   display: block;
   transition: 0.2s;
   font-size: 17px;
+  font-family:'Noto Sans JP', sans-serif;
   color: #9b9b9b;
   pointer-events: none;
 }
@@ -206,6 +275,8 @@
 #register_result_false{
 	white-space: nowrap;
 }
+
+
 
 input[type="button"] {
   padding: 10px 20px;
@@ -262,3 +333,24 @@ input[type="submit"] {
               0 0 50px #008cff,
               0 0 100px #008cff;
 }    
+
+
+#search_button{
+	margin:20px
+}
+
+#register{
+	margin:20px;
+	font-family:'Noto Sans JP', sans-serif;
+}
+
+#check_message{
+	font-size:20px;
+	font-family:'Noto Sans JP', sans-serif;
+}
+
+
+#register_result_false{
+	color:red;
+	font-size:20px;
+}
