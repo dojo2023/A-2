@@ -294,7 +294,7 @@ public class HomeServlet extends HttpServlet {
 			// lineName受け取り
 			m = lnp.matcher(lastTrainInfo);
 			if (m.find()) {
-				lineName = m.group().replace("\"", "").replace(",", "").split(" ")[1];
+				lineName = m.group().replace("\"", "").replace(",", "").replace("}", "").split(" ")[1];
 			}
 
 			// stationName受け取り
