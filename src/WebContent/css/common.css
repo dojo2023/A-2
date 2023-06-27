@@ -1,32 +1,33 @@
 @charset "UTF-8";
 
 /* すべてのページに適応 */
-html,body {
-    overflow-x: hidden;
+html, body {
+	overflow-x: hidden;
 }
 
 html {
-  font-family: fantasy
+	font-family: fantasy;
+	min-height: 100vh;
+	height: 100vh;
 }
 
 /* bodyタグ */
 body {
-  background-size: cover;
-  background-position:center;
-  margin: 0 0 0 0;		/* マージンなし（後で個別に設定） */
-  padding: 0 0 0 0;		/* パディングなし（後で個別に設定） */
-  color: rgb(255, 255, 255);
-  font-size: 30px;
-  background-color: #aca2ff;
-  background-image: linear-gradient(0deg, #aca2ff 0%, #3d3bff 47%, #060032 100%);
-  background-repeat:no-repeat;
-  position: relative;
-  text-align: center;
-  width:100%;
-}
-
-main{
-	  height:100vh - 120px;
+	background-size: cover;
+	background-position: center;
+	margin: 0 0 0 0; /* マージンなし（後で個別に設定） */
+	padding: 0 0 0 0; /* パディングなし（後で個別に設定） */
+	color: rgb(255, 255, 255);
+	background-color: #aca2ff; background-image : linear-gradient( 0deg,
+	#aca2ff 0%, #3d3bff 47%, #060032 100%); background-repeat : no-repeat;
+	font-size: 30px;
+	position: relative;
+	overflow-x: hidden;
+	text-align: center;
+	width: 100%;
+	height: 100vh;
+	background-image: linear-gradient(0deg, #aca2ff 0%, #3d3bff 47%, #060032 100%);
+	background-repeat: no-repeat;
 }
 
 .inner {
@@ -36,20 +37,20 @@ main{
 }
 
 .inner * {
-    height: 100px;              /* 高さ指定 */
+	height: 100px; /* 高さ指定 */
 }
 
-.inner span{
-	padding: 10px;              /* 余白指定 */
+.inner span {
+	padding: 10px; /* 余白指定 */
 }
 
-span img{
+span img {
 	filter: invert(1);
 	vertical-align: middle;
 }
 
-.menu_2{
-	z-index:1;
+.menu_2 {
+	z-index: 1;
 }
 
 .menu img {
@@ -59,24 +60,25 @@ span img{
 	top: 0;
 	right: 0;
 }
-	.menu_open {
-		opacity: 1;
-	}
 
-		.menu_open.active {
-			opacity: 0;
-		}
+.menu_open {
+	opacity: 1;
+}
 
-	.menu_close {
-		opacity: 0;
-	}
+.menu_open.active {
+	opacity: 0;
+}
 
-		.menu_close.active {
-			opacity: 1;
-		}
+.menu_close {
+	opacity: 0;
+}
+
+.menu_close.active {
+	opacity: 1;
+}
 
 .menu_list {
-	background-color: rgba(0,0,0,.5);
+	background-color: rgba(0, 0, 0, .5);
 	position: absolute;
 	transform: translate(100%, 0);
 	width: 100%;
@@ -91,11 +93,12 @@ span img{
 
 .menu_list.active {
 	transform: translate(0, 0);
-	}
+}
 
 .menu_list ul {
 	padding-inline: 0;
 }
+
 .menu_list li {
 	list-style: none;
 	margin-top: 1.5rem;
