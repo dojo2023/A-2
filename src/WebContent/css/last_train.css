@@ -1,13 +1,13 @@
 @charset "UTF-8";
 
-main{
-	position: relative;
+#guide {
+	font-size: 6vw;
 }
 
-#station{
-	font-size : 35px;
+#station {
+	font-size: 8vw;
 }
 
-#start_time{
-	font-size : 50px;
+#start_time {
+	font-size: 15vw;
 }
