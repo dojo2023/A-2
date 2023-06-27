@@ -94,6 +94,7 @@ public class HomeServlet extends HttpServlet {
 						if (cookie[i].getName().equals("overFlag")) {
 							overFlagcookie = cookie[i];
 							overFlagcookie.setValue(overFlag);
+							overFlagcookie.setMaxAge(overFlagcookie.getMaxAge());
 							response.addCookie(overFlagcookie);
 							break;
 						}
