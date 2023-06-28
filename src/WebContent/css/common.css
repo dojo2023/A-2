@@ -26,12 +26,10 @@ body {
 }
 
 .inner {
-	justify-content: space-between;
-	display: flex;
 	position: relative;
 }
 
-.inner * {
+.content * {
 	height: 100px; /* 高さ指定 */
 }
 
@@ -39,13 +37,29 @@ body {
 	padding: 10px; /* 余白指定 */
 }
 
+#home{
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+#logo{
+	position: absolute;
+	top: 0;
+	left: 50vw;
+	transform: translate(-50%, 0%);
+}
+
 span img {
 	filter: invert(1);
-	vertical-align: middle;
+	padding-top: 5px;
 }
 
 .menu_2 {
-	z-index: 1;
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 100;
 }
 
 .menu img {
@@ -73,17 +87,17 @@ span img {
 }
 
 .menu_list {
-	background-color: rgba(0, 0, 0, .5);
+	background-color: black;
 	position: absolute;
 	transform: translate(100%, 0);
 	width: 100%;
 	height: 100%;
 	display: grid;
 	justify-content: center;
-	align-content: center;
 	color: white;
 	text-align: center;
 	transition: .5s;
+	z-index: 99;
 }
 
 .menu_list.active {
@@ -98,4 +112,8 @@ span img {
 	list-style: none;
 	margin-top: 1.5rem;
 	cursor: pointer;
+}
+
+.humbleicons{
+	color: white;
 }

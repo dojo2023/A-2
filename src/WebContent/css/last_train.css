@@ -15,7 +15,7 @@
   user-select: none;
 }
 
-.btn_back:hover,:focus {
+.btn_back:hover,.btn_back:focus {
   color: #ffffff;
   background: #008cff;
   border: 1px solid #008cff;
@@ -51,7 +51,7 @@
 
 #back_form{
 	position: absolute;
-	top: 60%;
+	top: 70%;
 	left: 50%;
 	transform:translate(-50%, -50%);
 }
