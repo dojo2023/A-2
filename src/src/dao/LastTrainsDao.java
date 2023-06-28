@@ -61,7 +61,7 @@ public class LastTrainsDao {
 				+ "goal_time=" + goalDate + "&datum=wgs84&term=1440&limit=1&coord_unit=degree";
 		HttpRequest navRequest = HttpRequest.newBuilder()
 				.uri(URI.create(uri))
-				.header("X-RapidAPI-Key", "42fbfc38f7msh32b35a875763945p123a2cjsn5122a195ca21")
+				.header("X-RapidAPI-Key", "0a5f01cd2amsh462bad0820a70d7p1c2be9jsn2fbdc4eec256")
 				.header("X-RapidAPI-Host", "navitime-route-totalnavi.p.rapidapi.com")
 				.method("GET", HttpRequest.BodyPublishers.noBody())
 				.build();
