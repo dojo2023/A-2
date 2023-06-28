@@ -16,7 +16,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import dao.UsersDao;
-import model.UsageTakemura;
 import model.UserBeans;
 
 /**
@@ -59,7 +58,9 @@ public class ChangeNearestServlet extends HttpServlet {
 
 		request.setAttribute("userId", userId);
 		request.setAttribute("stationHome", ub.getStationHome());
-		request.setAttribute("stationHomeName", UsageTakemura.convertIdToName(ub.getStationHome()));
+		// TODO メソッド呼び出しに変える
+//		request.setAttribute("stationHomeName", UsageTakemura.convertIdToName(ub.getStationHome()));
+		request.setAttribute("stationHomeName", "荻窪");
 
 		// 最寄り駅変更にフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/change_nearest.jsp");
