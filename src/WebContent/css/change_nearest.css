@@ -1,22 +1,125 @@
 @charset "UTF-8";
 
-span{
-	color:black;
+#user_id {
+	position: relative;
+	right:20%;
+	top: 25%;
 }
 
-#user_id{
+#near_station{
 	position:relative;
-	background-color:white;
-	height:30%;
-	width:100%;
+	top:30%;
 }
 
-#staiton_search_position{
+div#staiton_search_position{
 	display:flex;
+	justify-content: center;
+    align-items: center;
 
+}
+
+div#check_message{
+	position:relative;
+	bottom:30%;
+}
+
+div#station {
+	position:relative;
+    margin-bottom: 3px;
+    right:3%;
+}
+
+div#search_position{
+	position:relative;
+	left:5%;
 }
 
 #station,#search_position{
 	margin:2%;
 	vertical-align: middle;
+}
+
+div#change_check{
+	position:relative;
+	top:140%;
+	right:25%;
+}
+
+div#update{
+	position:relative;
+	bottom:30%;
+	margin:2%;
+}
+
+form{
+	position:relative;
+	top:40%;
+}
+
+/*フォントサイズの設定*/
+
+#user{
+	font-size:min(8vh,8vw);
+}
+
+#change_check{
+	font-size:min(5vh,5vw);
+}
+
+#check_message{
+	font-size:min(4vh,4vw);
+}
+
+#station{
+	font-size:min(10vh,10vw);
+}
+
+/*ボタンデザイン*/
+
+input[type="button"] {
+  padding: 10px 20px;
+  text-transform: uppercase;
+  border-radius: 8px;
+  font-size: 17px;
+  font-weight: 500;
+  color: #ffffff80;
+  text-shadow: none;
+  background: transparent;
+  box-shadow: transparent;
+  border: 1px solid #ffffff80;
+  transition: 0.5s ease;
+  user-select: none;
+}
+
+input[type="submit"] {
+  padding: 10px 20px;
+  text-transform: uppercase;
+  border-radius: 8px;
+  font-size: 17px;
+  font-weight: 500;
+  color: #ffffff80;
+  text-shadow: none;
+  background: transparent;
+  box-shadow: transparent;
+  border: 1px solid #ffffff80;
+  transition: 0.5s ease;
+  user-select: none;
+}
+
+#search_position:hover,:focus {
+  color: #ffffff;
+  background: #008cff;
+  border: 1px solid #008cff;
+  box-shadow: 0 0 5px #008cff,
+              0 0 20px #008cff,
+              0 0 50px #008cff
+}
+
+#SUBMIT:hover,:focus {
+  color: #ffffff;
+  background: #008cff;
+  border: 1px solid #008cff;
+  box-shadow: 0 0 5px #008cff,
+              0 0 20px #008cff,
+              0 0 50px #008cff
 }
