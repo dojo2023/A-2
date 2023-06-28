@@ -1,16 +1,14 @@
 @charset "UTF-8";
 
 /* すべてのページに適応 */
-html, body {
-	overflow-x: hidden;
-}
-
 html {
+	overflow-x: hidden;
 	font-family: fantasy;
 }
 
 /* bodyタグ */
 body {
+	overflow-x: hidden;
 	background-size: cover;
 	background-position: center;
 	margin: 0 0 0 0; /* マージンなし（後で個別に設定） */
@@ -21,7 +19,6 @@ body {
 	background-repeat : no-repeat;
 	font-size: 3vw;
 	position: relative;
-	overflow-x: hidden;
 	text-align: center;
 	width: 100%;
 	min-height: 100vh;
