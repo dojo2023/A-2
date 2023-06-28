@@ -5,6 +5,14 @@ html {
   font-family: fantasy
 }
 
+main{
+	position:absolute;
+	top:50%;
+	left:50%;
+	width:100%;
+	transform:translate(-50%, -50%);
+}
+
 input[type="button"] {
   padding: 10px 20px;
   text-transform: uppercase;
@@ -31,20 +39,24 @@ input[type="button"] {
 }
 
 #timer{
-	margin:25% 0 0 0;
+	/*margin:25%;*/
 	position:relative;
 }
 
-#timer_img{
-	height:50%;
-	width:80%;
-}
-
 #timer_text{
+	color:black;
+	font-size:600%;
+	margin:10% 0 0 0;
 	position:absolute;
 	top:50%;
 	left:50%;
 	transform:translate(-50%, -50%);
+}
+
+#timer_img{
+	height:50%;
+	width:60%;
+	z-index:-1;
 }
 
 #plan table{

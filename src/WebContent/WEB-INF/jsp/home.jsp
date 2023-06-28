@@ -22,7 +22,7 @@
 	</div>
 
 	<div id="timer">
-		<img src="/syuudeen/img/imagelogo.png" id="timer_img"></>
+		<img src="/syuudeen/img/train.png" id="timer_img"></>
 		<div id="timer_text"></div>
 	</div>
 	<input type="hidden" id="hidden_alert" value="${userAlert}">
