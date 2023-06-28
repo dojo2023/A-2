@@ -12,24 +12,25 @@
 div img {
 	filter: invert(1);
 	vertical-align: middle;
+	margin:2vh;
 }
 /*ユーザーID*/
 .form_group {
 	display: flex;
 	position: relative;
-	margin: 0 auto;
+	margin: 5vh auto;
 	padding: 20px 0;
 	width: 100%;
-	max-width: 180px;
+    max-width: 50vw;
 }
 
 #user_id {
-	font-family: inherit;
+	font-family: 'Noto Sans JP', sans-serif;
 	width: 100%;
 	border: none;
 	border-bottom: 2px solid #9b9b9b;
 	outline: 0;
-	font-size: 17px;
+	font-size: min(4vh,4vw);
 	color: #fff;
 	padding: 0;
 	background: transparent;
@@ -41,7 +42,7 @@ div img {
 }
 
 #user_id:placeholder-shown ~ .form_label {
-	font-size: 17px;
+	font-size:min(4vh,4vw);
 	cursor: text;
 	top: 20px;
 }
@@ -52,14 +53,14 @@ div img {
 	top: 0;
 	display: block;
 	transition: 0.2s;
-	font-size: 17px;
+	font-size: min(4vh,4vw);
 	font-family: 'Noto Sans JP', sans-serif;
 	color: #9b9b9b;
 	pointer-events: none;
 }
 
 #user_id:focus {
-	padding-bottom: 6px;
+	padding-bottom: 0px;
 	font-weight: 700;
 	border-width: 3px;
 	border-image: linear-gradient(to right, #116399, #38caef);
@@ -68,10 +69,10 @@ div img {
 
 #user_id:focus ~ .form_label {
 	position: absolute;
-	top: 0;
+	top: -1vh;
 	display: block;
 	transition: 0.2s;
-	font-size: 17px;
+	font-size: min(4vh,4vw);
 	color: #38caef;
 	font-weight: 700;
 }
@@ -83,9 +84,10 @@ div img {
 
 #emg {
 	white-space: nowrap;
-	margin: 50px 0px;
-	font-size: 25px;
+	font-size:2vh;
+	margin:1vh;
 	color: #ff0000;
+	font-family:'Noto Sans JP', sans-serif;
 }
 
 /* #user_login {
@@ -96,11 +98,11 @@ div img {
 
 /*PW*/
 #user_pw {
-	font-family: inherit;
+	font-family: 'Noto Sans JP', sans-serif;
 	border: none;
 	border-bottom: 2px solid #9b9b9b;
 	outline: 0;
-	font-size: 17px;
+	font-size: min(4vh,4vw);
 	color: #fff;
 	padding: 0;
 	background: transparent;
@@ -112,7 +114,7 @@ div img {
 }
 
 #user_pw:placeholder-shown ~ .form_label {
-	font-size: 17px;
+	font-size:  min(4vh,4vw);
 	cursor: text;
 	top: 20px;
 }
@@ -123,7 +125,7 @@ div img {
 	top: 0;
 	display: block;
 	transition: 0.2s;
-	font-size: 17px;
+	font-size: min(4vh,4vw);
 	font-family: 'Noto Sans JP', sans-serif;
 	color: #9b9b9b;
 	pointer-events: none;
@@ -139,10 +141,10 @@ div img {
 
 #user_pw:focus ~ .form_label {
 	position: absolute;
-	top: 0;
+	top: -1vh;
 	display: block;
 	transition: 0.2s;
-	font-size: 17px;
+	font-size: min(4vh,4vw);
 	color: #38caef;
 	font-weight: 700;
 }
@@ -171,7 +173,7 @@ input[type="submit"] {
 	padding: 10px 20px;
 	text-transform: uppercase;
 	border-radius: 8px;
-	font-size: 17px;
+	font-size: min(4vh,4vw);
 	font-weight: 500;
 	color: #ffffff80;
 	text-shadow: none;
@@ -194,4 +196,12 @@ input[type="submit"] {
 	top: 50%;
 	right: 0;
 	transform: translate(110%, -53%);
+}
+
+#login_button{
+	margin:3vh;
+}
+
+a {
+  color: #fff;
 }

@@ -22,10 +22,11 @@
  
   <div class="form_group">
   <input type="text" placeholder="１～１２文字の半角英数字で入力してください" id="user_id" name="user_id"value="${param.user_id }">
+  <label for="id" class="form_label">ID</label>
+  <span class="focus_line"></span>
   <div id="anim">
     <span class="tooltip" data-tooltip="１～１２文字の半角英数字で入力してください">?</span>
     </div>
-  <label for="id" class="form_label">ID</label>
   </div>
   
   <div class="form_group">

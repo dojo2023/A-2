@@ -390,7 +390,7 @@ input[type="submit"] {
   border: none;
   border-bottom: 2px solid #9b9b9b;
   outline: 0;
-  font-size: min(4vh,4vw);
+  font-size:min(4vh,4vw);
   color: #fff;
   padding: 0;
   background: transparent;
@@ -402,7 +402,7 @@ input[type="submit"] {
 }
 
 #user_id:placeholder-shown ~ .form_label {
-  font-size: min(4vh,4vw);
+  font-size:min(4vh,4vw);
   cursor: text;
   top: 20px;
 }
@@ -413,7 +413,7 @@ input[type="submit"] {
   top: 0;
   display: block;
   transition: 0.2s;
-  font-size: min(4vh,4vw);
+  font-size:min(4vh,4vw);
   font-family:'Noto Sans JP', sans-serif;
   color: #9b9b9b;
   pointer-events: none;
@@ -429,10 +429,10 @@ input[type="submit"] {
 
 #user_id:focus ~ .form_label {
   position: absolute;
-  top: 0;
+  top: -1vh;
   display: block;
   transition: 0.2s;
-  font-size: min(4vh,4vw);
+  font-size:min(2vh,2vw);
   color: #38caef;
   font-weight: 700;
 }
@@ -562,7 +562,7 @@ input[type="submit"] {
 
 #user_pw:focus ~ .form_label {
   position: absolute;
-  top: 0;
+  top: -1vh;
   display: block;
   transition: 0.2s;
   font-size: min(4vh,4vw);
@@ -623,10 +623,10 @@ input[type="submit"] {
 
 #pw_check:focus ~ .form_label {
   position: absolute;
-  top: 0;
+  top: -1vh;
   display: block;
   transition: 0.2s;
-  font-size: min(2vh,2vw);
+  font-size: min(4vh,4vw);
   color: #38caef;
   font-weight: 700;
 }
