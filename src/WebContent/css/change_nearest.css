@@ -106,7 +106,7 @@ input[type="submit"] {
   user-select: none;
 }
 
-#search_position:hover,:focus {
+#search_button:hover,#search_button:focus {
   color: #ffffff;
   background: #008cff;
   border: 1px solid #008cff;
@@ -115,7 +115,7 @@ input[type="submit"] {
               0 0 50px #008cff
 }
 
-#SUBMIT:hover,:focus {
+#SUBMIT:hover,#SUBMIT:focus {
   color: #ffffff;
   background: #008cff;
   border: 1px solid #008cff;
