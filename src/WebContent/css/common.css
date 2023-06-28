@@ -64,7 +64,6 @@ span img {
 
 .menu img {
 	/* width: 100%;*/
-	filter: invert(1);
 	position: absolute;
 	top: 0;
 	right: 0;

@@ -1,9 +1,6 @@
 @charset "UTF-8";
 
 /* すべてのページに適応 */
-html {
-  font-family: fantasy
-}
 
 main{
 	position:absolute;
@@ -39,16 +36,14 @@ input[type="button"] {
 }
 
 #timer{
-	/*margin:25%;*/
 	position:relative;
 }
 
 #timer_text{
 	color:black;
 	font-size:min(7vh,7vw);
-	margin:10% 0 0 0;
 	position:absolute;
-	top:50%;
+	top:65%;
 	left:50%;
 	transform:translate(-50%, -50%);
 }
