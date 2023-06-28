@@ -45,7 +45,7 @@ input[type="button"] {
 
 #timer_text{
 	color:black;
-	font-size:600%;
+	font-size:min(7vh,7vw);
 	margin:10% 0 0 0;
 	position:absolute;
 	top:50%;
