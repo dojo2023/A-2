@@ -1,5 +1,7 @@
 @charset "UTF-8";
 
+
+@media screen and (min-width:480px) {
 /*PWとPWチェックの確認*/
 #user_id {
         border: none; /* デフォルトの枠線を消す */
@@ -353,4 +355,369 @@ input[type="submit"] {
 #register_result_false{
 	color:red;
 	font-size:20px;
+}
+
+}
+
+/*PWとPWチェックの確認*/
+#user_id {
+        border: none; /* デフォルトの枠線を消す */
+      }
+      
+#logo_register{
+	filter: invert(1);
+	margin:2vh;
+}      
+
+#station{
+	font-size:min(4vh,4vw)
+}
+
+      
+/*ユーザーID*/      
+.form_group {
+  display:flex;
+  position: relative;
+  margin: 5vh auto;
+  padding: 20px  0;
+  width: 100%;
+  max-width: 50vw;
+}
+
+#user_id {
+  font-family: 'Noto Sans JP', sans-serif;
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid #9b9b9b;
+  outline: 0;
+  font-size: min(4vh,4vw);
+  color: #fff;
+  padding: 0;
+  background: transparent;
+  transition: border-color 0.2s;
+}
+
+#user_id::placeholder {
+  color: transparent;
+}
+
+#user_id:placeholder-shown ~ .form_label {
+  font-size: min(4vh,4vw);
+  cursor: text;
+  top: 20px;
+}
+
+.form_label {
+  white-space: nowrap;
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: min(4vh,4vw);
+  font-family:'Noto Sans JP', sans-serif;
+  color: #9b9b9b;
+  pointer-events: none;
+}
+
+#user_id:focus {
+  padding-top: 0px;
+  font-weight: 700;
+  border-width: 3px;
+  border-image: linear-gradient(to right, #116399, #38caef);
+  border-image-slice: 1;
+}
+
+#user_id:focus ~ .form_label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: min(4vh,4vw);
+  color: #38caef;
+  font-weight: 700;
+}
+
+/* reset input */
+#user_id:required, .form_field:invalid {
+  box-shadow: none;
+}    
+
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400');
+
+.tooltip {
+  position: relative;
+  background: #78C55F;
+  width:2vh;
+  height:2vh;
+  font-size: min(3vh,3vw);
+  font-family:'Noto Sans JP', sans-serif;
+  border-radius:50%;
+  color: #FFF;
+}
+
+.tooltip:after {
+  position: absolute;
+  content: '';
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+.tooltip:before {
+  border-width: 10px 8px 0 8px;
+  border-style: solid;
+  border-color: #78C55F transparent transparent transparent;
+  top: -15px;
+  transform: translateY(20px);
+}
+
+.tooltip:after {
+  content: attr(data-tooltip);
+  background: #78C55F;
+  width: 9em;
+  height: 4em;
+  font-size: min(2vh,2vw);
+  font-weight: 300;
+  top: -30px;
+  left: 60px;
+  padding: 10px;
+  border-radius: 5px;
+  letter-spacing: 1px;
+  transform: translateY(20px);
+}
+
+.tooltip:hover::before,
+.tooltip:hover::after {
+  opacity: 1;
+  transform: translateX(-2px);
+}
+
+@keyframes shake {
+  0% { 
+    transform: rotate(2deg);
+  }
+  50% {
+   transform: rotate(-3deg);
+  }
+  70% {
+    transform: rotate(3deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+#anim{
+  display:flex;
+}
+#anim:hover {
+  animation: shake 500ms ease-in-out forwards;
+}
+
+  
+/*PW*/
+
+#user_pw {
+  font-family: inherit;
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid #9b9b9b;
+  outline: 0;
+  font-size: min(4vh,4vw);
+  color: #fff;
+  padding: 0;
+  background: transparent;
+  transition: border-color 0.2s;
+}
+
+#user_pw::placeholder {
+  color: transparent;
+}
+
+#user_pw:placeholder-shown ~ .form_label {
+  font-size: min(4vh,4vw);
+  cursor: text;
+  top: 20px;
+}
+
+.form_label {
+  white-space: nowrap;
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: min(4vh,4vw);
+  font-family:'Noto Sans JP', sans-serif;
+  color: #9b9b9b;
+  pointer-events: none;
+}
+
+#user_pw:focus {
+  padding-bottom: 6px;
+  font-weight: 700;
+  border-width: 3px;
+  border-image: linear-gradient(to right, #116399, #38caef);
+  border-image-slice: 1;
+}
+
+#user_pw:focus ~ .form_label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: min(4vh,4vw);
+  color: #38caef;
+  font-weight: 700;
+}
+
+/* reset input */
+#user_pw:required, #user_pw:invalid {
+  box-shadow: none;
+}    
+
+
+/*PW_CHECK*/
+#pw_check {
+  font-family: inherit;
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid #9b9b9b;
+  outline: 0;
+  font-size: min(4vh,4vw);
+  color: #fff;
+  padding: 0;
+  background: transparent;
+  transition: border-color 0.2s;
+}
+
+#pw_check::placeholder {
+  color: transparent;
+}
+
+#pw_check:placeholder-shown ~ .form_label {
+  font-size: min(4vh,4vw);
+  cursor: text;
+  top: 20px;
+}
+
+.form_label {
+  white-space: nowrap;
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: min(4vh,4vw);
+  font-family:'Noto Sans JP', sans-serif;
+  color: #9b9b9b;
+  pointer-events: none;
+}
+
+#pw_check:focus {
+  padding-bottom: 6px;
+  font-weight: 700;
+  border-width: 3px;
+  border-image: linear-gradient(to right, #116399, #38caef);
+  border-image-slice: 1;
+}
+
+
+#pw_check:focus ~ .form_label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: min(2vh,2vw);
+  color: #38caef;
+  font-weight: 700;
+}
+
+
+/* reset input */
+#pw_check:required, #pw_check:invalid {
+  box-shadow: none;
+}
+
+#register_result_false{
+	white-space: nowrap;
+}
+
+
+
+input[type="button"] {
+  padding: 10px 20px;
+  text-transform: uppercase;
+  border-radius: 8px;
+  font-size: min(4vh,4vw);
+  font-weight: 500;
+  color: #ffffff80;
+  text-shadow: none;
+  background: transparent;
+  box-shadow: transparent;
+  border: 1px solid #ffffff80;
+  transition: 0.5s ease;
+  user-select: none;
+}
+
+input[type="button"]:hover {
+  color: #ffffff;
+  background: #008cff;
+  border: 1px solid #008cff;
+  text-shadow: 0 0 5px #ffffff,
+              0 0 10px #ffffff,
+              0 0 20px #ffffff;
+  box-shadow: 0 0 5px #008cff,
+              0 0 20px #008cff,
+              0 0 50px #008cff,
+              0 0 100px #008cff;
+}
+
+input[type="submit"] {
+  padding: 10px 20px;
+  text-transform: uppercase;
+  border-radius: 8px;
+  font-size: min(4vh,4vw);
+  font-weight: 500;
+  color: #ffffff80;
+  text-shadow: none;
+  background: transparent;
+  box-shadow: transparent;
+  border: 1px solid #ffffff80;
+  transition: 0.5s ease;
+  user-select: none;
+}
+
+#register:hover {
+  color: #ffffff;
+  background: #008cff;
+  border: 1px solid #008cff;
+  text-shadow: 0 0 5px #ffffff,
+              0 0 10px #ffffff,
+              0 0 20px #ffffff;
+  box-shadow: 0 0 5px #008cff,
+              0 0 20px #008cff,
+              0 0 50px #008cff,
+              0 0 100px #008cff;
+}    
+
+
+#search_button{
+	margin:20px
+}
+
+#register{
+	margin:20px;
+	font-family:'Noto Sans JP', sans-serif;
+}
+
+#check_message{
+	font-size:min(4vh,4vw);
+	font-family:'Noto Sans JP', sans-serif;
+	margin:1vh;
+}
+
+
+#register_result_false{
+	color:red;
+	font-size:2vh;
+	margin:1vh;
 }
