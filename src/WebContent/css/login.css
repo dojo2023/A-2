@@ -4,11 +4,11 @@
 	border: none; /* デフォルトの枠線を消す */
 }
 
-#user_login{
+#user_login {
 	position: relative;
 	padding: 20px 0 0;
-
 }
+
 div img {
 	filter: invert(1);
 	vertical-align: middle;
@@ -17,9 +17,10 @@ div img {
 .form_group {
 	display: flex;
 	position: relative;
-	padding: 20px 0 0;
-	width: 350em;
-	max-width: 430px;
+	margin: 0 auto;
+	padding: 20px 0;
+	width: 100%;
+	max-width: 180px;
 }
 
 #user_id {
@@ -28,7 +29,7 @@ div img {
 	border: none;
 	border-bottom: 2px solid #9b9b9b;
 	outline: 0;
-	font-size: 34px;
+	font-size: 17px;
 	color: #fff;
 	padding: 0;
 	background: transparent;
@@ -40,11 +41,9 @@ div img {
 }
 
 #user_id:placeholder-shown ~ .form_label {
-	font-size: 34px;
+	font-size: 17px;
 	cursor: text;
 	top: 20px;
-
-
 }
 
 .form_label {
@@ -53,7 +52,8 @@ div img {
 	top: 0;
 	display: block;
 	transition: 0.2s;
-	font-size: 34px;
+	font-size: 17px;
+	font-family: 'Noto Sans JP', sans-serif;
 	color: #9b9b9b;
 	pointer-events: none;
 }
@@ -71,7 +71,7 @@ div img {
 	top: 0;
 	display: block;
 	transition: 0.2s;
-	font-size: 34px;
+	font-size: 17px;
 	color: #38caef;
 	font-weight: 700;
 }
@@ -84,6 +84,8 @@ div img {
 #emg {
 	white-space: nowrap;
 	margin: 50px 0px;
+	font-size: 25px;
+	color: #ff0000;
 }
 
 /* #user_login {
@@ -95,11 +97,10 @@ div img {
 /*PW*/
 #user_pw {
 	font-family: inherit;
-	width: 100%;
 	border: none;
 	border-bottom: 2px solid #9b9b9b;
 	outline: 0;
-	font-size: 34px;
+	font-size: 17px;
 	color: #fff;
 	padding: 0;
 	background: transparent;
@@ -111,9 +112,21 @@ div img {
 }
 
 #user_pw:placeholder-shown ~ .form_label {
-	font-size: 34px;
+	font-size: 17px;
 	cursor: text;
 	top: 20px;
+}
+
+.form_label {
+	white-space: nowrap;
+	position: absolute;
+	top: 0;
+	display: block;
+	transition: 0.2s;
+	font-size: 17px;
+	font-family: 'Noto Sans JP', sans-serif;
+	color: #9b9b9b;
+	pointer-events: none;
 }
 
 #user_pw:focus {
@@ -129,7 +142,7 @@ div img {
 	top: 0;
 	display: block;
 	transition: 0.2s;
-	font-size: 34px;
+	font-size: 17px;
 	color: #38caef;
 	font-weight: 700;
 }
@@ -138,15 +151,27 @@ div img {
 #user_pw:required, .form_field:invalid {
 	box-shadow: none;
 }
-#login{
 
+#user_login_area {
+	text-align: center;
+	display: inline-block;
+}
+
+#form_group {
+	text-align: center;
+	display: inline-block;
+}
+
+#register_link {
+	position: relative;
+	padding: 20px;
 }
 /*ログインボタン*/
 input[type="submit"] {
 	padding: 10px 20px;
 	text-transform: uppercase;
 	border-radius: 8px;
-	font-size: 34px;
+	font-size: 17px;
 	font-weight: 500;
 	color: #ffffff80;
 	text-shadow: none;
@@ -161,17 +186,12 @@ input[type="submit"] {
 	color: #ffffff;
 	background: #008cff;
 	border: 1px solid #008cff;
-	text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #ffffff;
-	box-shadow: 0 0 5px #008cff, 0 0 20px #008cff, 0 0 50px #008cff, 0 0
-		100px #008cff;
+	box-shadow: 0 0 5px #008cff, 0 0 20px #008cff, 0 0 50px #008cff
 }
 
-#user_login_area {
-	text-align: center;
-	display: inline-block;
-}
-
-#form_group{
-	text-align:center;
-	display:inline-block;
+.fa{
+	position: absolute;
+	top: 50%;
+	right: 0;
+	transform: translate(110%, -53%);
 }

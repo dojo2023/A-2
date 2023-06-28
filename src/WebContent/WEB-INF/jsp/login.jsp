@@ -39,7 +39,7 @@
 			<input type="submit" value="ログイン" id="login">
 		</div>
 		<div id="login_result_false"></div>
-		<div>
+		<div id="register_link">
 			<a href="/syuudeen/UserRegisterServlet" id="register_link">新規登録はこちらから</a>
 		</div>
 	</form>
