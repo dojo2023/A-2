@@ -4,8 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="/syuudeen/css/change_nearest.css">
+<title>最寄り駅変更 | Syuudeen</title>
+<link rel="stylesheet" type="text/css"
+	href="/syuudeen/css/change_nearest.css">
 <script type="text/javascript" src="/syuudeen/js/change_nearest.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -29,8 +30,8 @@
 					value="${stationHome}">
 
 				<div id="search_position">
-					<input type="button" id="search_button" name="SUBMIT" value="最寄り駅検索"
-						onclick="search_position()" disabled>
+					<input type="button" id="search_button" name="SUBMIT"
+						value="最寄り駅検索" onclick="search_position()" disabled>
 				</div>
 			</div>
 

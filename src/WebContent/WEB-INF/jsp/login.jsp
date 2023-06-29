@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>ログイン | Syuudeen</title>
 <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
 	rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="/syuudeen/css/common.css">
@@ -28,7 +28,7 @@
 
 				<input type="password" id="user_pw" placeholder="パスワード"
 					name="user_pw"> <span id="pw_check_button"
-					class="fa fa-eye" onclick="pushHideButton()"></span> <label
+					class="fa fa-eye-slash" onclick="pushHideButton()"></span> <label
 					for="pw" class="form_label">パスワード</label>
 
 			</div>

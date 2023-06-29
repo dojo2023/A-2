@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>ホーム | Syuudeen</title>
 <link rel="stylesheet" type="text/css" href="/syuudeen/css/home.css">
 <script type="text/javascript" defer src="/syuudeen/js/home.js"></script>
 <script type="text/javascript"
@@ -16,38 +16,38 @@
 	<%@ include file="/WEB-INF/jsp/header.jsp"%>
 	<main>
 
-	<div id="alert">
-		通知
-		<%@ include file="/WEB-INF/jsp/toggle.jsp"%>
-	</div>
+		<div id="alert">
+			通知
+			<%@ include file="/WEB-INF/jsp/toggle.jsp"%>
+		</div>
 
-	<div id="timer">
-		<img src="/syuudeen/img/train.png" id="timer_img"></>
-		<div id="timer_text"></div>
-	</div>
-	<input type="hidden" id="hidden_alert" value="${userAlert}">
-	<input type="hidden" id="hidden_time" value="${startTime}">
-	<div id="search_position_button">
-		<form name="search_form" action="/syuudeen/HomeServlet" method="POST">
+		<div id="timer">
+			<img src="/syuudeen/img/train.png" id="timer_img"></>
+			<div id="timer_text"></div>
+		</div>
+		<input type="hidden" id="hidden_alert" value="${userAlert}"> <input
+			type="hidden" id="hidden_time" value="${startTime}">
+		<div id="search_position_button">
+			<form name="search_form" action="/syuudeen/HomeServlet" method="POST">
 
-			<input type="button" value="位置情報検索" id="search_position"
-				name="search_position" onclick="position()"> <input
-				type="hidden" id="hidden_position" name="hidden_position" value="">
-		</form>
-	</div>
-	<div id="plan">
-		<table>
-			<tr>
-				<td>19:00</td>
-				<td>定例会</td>
-			</tr>
+				<input type="button" value="位置情報検索" id="search_position"
+					name="search_position" onclick="position()"> <input
+					type="hidden" id="hidden_position" name="hidden_position" value="">
+			</form>
+		</div>
+		<div id="plan">
+			<table>
+				<tr>
+					<td>19:00</td>
+					<td>定例会</td>
+				</tr>
 
-			<tr>
-				<td>22:00</td>
-				<td>同期呑み</td>
-			</tr>
-		</table>
-	</div>
+				<tr>
+					<td>22:00</td>
+					<td>同期呑み</td>
+				</tr>
+			</table>
+		</div>
 	</main>
 </body>
 </html>
