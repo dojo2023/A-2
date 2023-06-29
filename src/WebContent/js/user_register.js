@@ -55,10 +55,10 @@ function search_position() {
         if (txtPass1.type === "text" || txtPass2.type === "text") {
           txtPass1.type = "password";
           txtPass2.type = "password";
-          btnEye.className = "fa fa-eye";
+          btnEye.className = "fa fa-eye-slash";
         } else {
           txtPass1.type = "text";
           txtPass2.type = "text";
-          btnEye.className = "fa fa-eye-slash";
+          btnEye.className = "fa fa-eye";
         }
       }

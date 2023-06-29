@@ -4,9 +4,9 @@
         var btnEye = document.getElementById("pw_check_button");
         if (txtPass.type === "text") {
           txtPass.type = "password";
-          btnEye.className = "fa fa-eye";
+          btnEye.className = "fa fa-eye-slash";
         } else {
           txtPass.type = "text";
-          btnEye.className = "fa fa-eye-slash";
+          btnEye.className = "fa fa-eye";
         }
       }
