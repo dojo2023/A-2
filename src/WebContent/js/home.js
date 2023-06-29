@@ -82,7 +82,7 @@ var hours, minutes, seconds;
 function countdown() {
 	var lastTrain = document.getElementById("hidden_time").value;
 	if (lastTrain == "") {
-		document.getElementById("timer_text").innerHTML = "ボタンを押して終電検索";
+		document.getElementById("timer_text").innerHTML = "ボタンを押して<br>終電検索";
 		return;
 	}
 	else {
