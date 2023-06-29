@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>最寄り駅変更 | Syuudeen</title>
+<title>最寄り駅変更 | syuudeen</title>
 <link rel="stylesheet" type="text/css"
 	href="/syuudeen/css/change_nearest.css">
 <script type="text/javascript" src="/syuudeen/js/change_nearest.js"></script>

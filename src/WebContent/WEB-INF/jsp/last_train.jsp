@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name=”viewport” content=”width=device-width,initial-scale=1.0″>
-<title>終電表示 | Syuudeen</title>
+<title>終電表示 | syuudeen</title>
 <link rel="stylesheet" href="/syuudeen/css/last_train.css">
 </head>
 <body>

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ログイン | Syuudeen</title>
+<title>ログイン | syuudeen</title>
 <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
 	rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="/syuudeen/css/common.css">

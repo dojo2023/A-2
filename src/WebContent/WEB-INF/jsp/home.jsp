@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ホーム | Syuudeen</title>
+<title>ホーム | syuudeen</title>
 <link rel="stylesheet" type="text/css" href="/syuudeen/css/home.css">
 <script type="text/javascript" defer src="/syuudeen/js/home.js"></script>
 <script type="text/javascript"
