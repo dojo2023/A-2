@@ -53,6 +53,8 @@ public class LastTrainServlet extends HttpServlet {
 		cookieGt.setMaxAge(3 * 24 * 60 * 60);
 		response.addCookie(cookieGt);
 
+		System.out.println(cookieSt.getValue() + "\n" + cookieGt.getValue());
+
 		// 終電表示画面にフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/last_train.jsp");
 		dispatcher.forward(request, response);

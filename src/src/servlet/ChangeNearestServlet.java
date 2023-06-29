@@ -60,7 +60,7 @@ public class ChangeNearestServlet extends HttpServlet {
 		request.setAttribute("stationHome", ub.getStationHome());
 		// TODO メソッド呼び出しに変える
 //		request.setAttribute("stationHomeName", UsageTakemura.convertIdToName(ub.getStationHome()));
-		request.setAttribute("stationHomeName", "荻窪");
+		request.setAttribute("stationHomeName", "新宿");
 
 		// 最寄り駅変更にフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/change_nearest.jsp");
@@ -101,8 +101,8 @@ public class ChangeNearestServlet extends HttpServlet {
 			String position = request.getParameter("position");
 
 			// for debug
-			String stationId = "00000877";
-			String stationName = "荻窪";
+			String stationId = "00004254";
+			String stationName = "新宿";
 
 			//			String stationId = UsageTakemura.convertGeoToId(position);
 			//			String stationName = UsageTakemura.convertIdToName(stationId);

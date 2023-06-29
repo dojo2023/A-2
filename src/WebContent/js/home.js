@@ -62,7 +62,7 @@ const overFlag = document.cookie
 	.split('=')[1];
 
 if (overFlag === 'TRUE') {
-	document.getElementById("timer_text").innerHTML = "本日の終電は終了しました。";
+	document.getElementById("timer_text").innerHTML = "本日の終電は<br>終了しました。";
 	clearInterval(countdown);
 
 } else {

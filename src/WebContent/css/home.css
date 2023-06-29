@@ -10,10 +10,14 @@ main{
 	transform:translate(-50%, -50%);
 }
 
+#alert{
+	font-size: min(7vh, 7vw);
+}
+
 input[type="button"] {
   padding: 10px 20px;
   text-transform: uppercase;
-  border-radius: 8px;
+  border-radius: 12px;
   font-size: 17px;
   font-weight: 500;
   color: #ffffff80;
@@ -25,7 +29,7 @@ input[type="button"] {
   user-select: none;
 }
 
-#search_position:hover,:focus {
+#search_position:hover,#search_position:focus {
   color: #ffffff;
   background: #008cff;
   border: 1px solid #008cff;
@@ -35,13 +39,22 @@ input[type="button"] {
               0 0 100px #008cff;
 }
 
+#search_position_button{
+	margin: 50px;
+}
+
+#search_position{
+	font-size: min(6vh, 6vw);
+}
+
 #timer{
 	position:relative;
 }
 
 #timer_text{
+	white-space: nowrap;
 	color:black;
-	font-size:min(7vh,7vw);
+	font-size:min(9vh,9vw);
 	position:absolute;
 	top:65%;
 	left:50%;
@@ -49,12 +62,13 @@ input[type="button"] {
 }
 
 #timer_img{
-	height:50%;
-	width:60%;
+	height:70%;
+	width:80%;
 	z-index:-1;
 }
 
 #plan table{
+	font-size:min(6vh,6vw);
 	text-align:center;
 	display:inline-block;
 }

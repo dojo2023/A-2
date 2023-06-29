@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.LastTrainsDao;
 import dao.UsersDao;
+import model.LastTrainBeans;
 
 /**
  * Servlet implementation class LoginServlet
@@ -70,13 +71,24 @@ public class LoginServlet extends HttpServlet {
 			cookie.setMaxAge(3 * 24 * 60 * 60);
 			response.addCookie(cookie);
 
-			// LastTrainDaoを用意してoverFlagをcookieに設定
+			// LastTrainDaoを用意して各種パラメタをcookieに設定
 			LastTrainsDao ltd = new LastTrainsDao();
-			String overFlag = ltd.select(id).get(0).getOverFlag();
+			LastTrainBeans ltb = ltd.select(id).get(0);
 
+			String overFlag = ltb.getOverFlag();
 			Cookie cookie2 = new Cookie("overFlag", overFlag);
 			cookie2.setMaxAge(3 * 24 * 60 * 60);
 			response.addCookie(cookie2);
+
+			String startTime = ltb.getStartTime();
+			Cookie startTimeCookie = new Cookie("startTime", startTime);
+			cookie2.setMaxAge(3 * 24 * 60 * 60);
+			response.addCookie(startTimeCookie);
+
+			String goalTime = ltb.getGoalTime();
+			Cookie goalTimeCookie = new Cookie("goalTime", goalTime);
+			cookie2.setMaxAge(3 * 24 * 60 * 60);
+			response.addCookie(goalTimeCookie);
 
 			String userAlert = UDao.select(id).get(0).getUserAlert();
 			Cookie cookieCheck = new Cookie("check", userAlert);

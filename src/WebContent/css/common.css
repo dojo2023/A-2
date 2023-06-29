@@ -15,8 +15,8 @@ body {
 	padding: 0 0 0 0; /* パディングなし（後で個別に設定） */
 	color: rgb(255, 255, 255);
 	background-color: #aca2ff;
-	background-image : linear-gradient( 0deg, #aca2ff 0%, #3d3bff 47%, #060032 100%);
-	background-repeat : no-repeat;
+	background-image: linear-gradient(0deg, #aca2ff 0%, #3d3bff 47%, #060032 100%);
+	background-repeat: no-repeat;
 	font-size: 3vw;
 	position: relative;
 	text-align: center;
@@ -30,20 +30,20 @@ body {
 }
 
 .content * {
-	height: 100px; /* 高さ指定 */
+	height: 180px; /* 高さ指定 */
 }
 
 .inner span {
 	padding: 10px; /* 余白指定 */
 }
 
-#home{
+#home {
 	position: absolute;
 	top: 0;
 	left: 0;
 }
 
-#logo{
+#logo {
 	position: absolute;
 	top: 0;
 	left: 50vw;
@@ -97,6 +97,7 @@ span img {
 	text-align: center;
 	transition: .5s;
 	z-index: 99;
+	font-size: min(6vh, 6vw);
 }
 
 .menu_list.active {
@@ -113,6 +114,17 @@ span img {
 	cursor: pointer;
 }
 
-.humbleicons{
+.menu_list a:link, .menu_list a:vidited {
+	color: #ffffff80;
+	text-decoration: none;
+}
+
+.menu_list a:hover, .menu_list a:acive {
+	color: #ffffff;
+	border: 1px solid #008cff;
+	box-shadow: 0 0 5px #008cff, 0 0 20px #008cff, 0 0 50px #008cff
+}
+
+.humbleicons {
 	color: white;
 }

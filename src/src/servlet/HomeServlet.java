@@ -94,7 +94,7 @@ public class HomeServlet extends HttpServlet {
 						if (cookie[i].getName().equals("overFlag")) {
 							overFlagcookie = cookie[i];
 							overFlagcookie.setValue(overFlag);
-							overFlagcookie.setMaxAge(overFlagcookie.getMaxAge());
+							overFlagcookie.setMaxAge(3 * 24 * 60 * 60);
 							response.addCookie(overFlagcookie);
 							break;
 						}
@@ -127,7 +127,7 @@ public class HomeServlet extends HttpServlet {
 						if (cookie[i].getName().equals("overFlag")) {
 							overFlagcookie = cookie[i];
 							overFlagcookie.setValue(overFlag);
-							overFlagcookie.setMaxAge(overFlagcookie.getMaxAge());
+							overFlagcookie.setMaxAge(3 * 24 * 60 * 60);
 							response.addCookie(overFlagcookie);
 							break;
 						}
@@ -210,7 +210,7 @@ public class HomeServlet extends HttpServlet {
 					if (cookie[i].getName().equals("check")) {
 						checkCookie = cookie[i];
 						checkCookie.setValue(check);
-						checkCookie.setMaxAge(checkCookie.getMaxAge());
+						checkCookie.setMaxAge(3 * 24 * 60 * 60);
 						response.addCookie(checkCookie);
 						break;
 					}

@@ -48,10 +48,10 @@ function search_position() {
 function notice() {
 	if (document.getElementById("alert_check").checked) {
 		// チェックボックスがONのときの処理
-		const button = document.getElementById("SUBMIT");
+		const button = document.getElementById("search_button");
 		button.disabled = false
 	} else {
-		const button = document.getElementById("SUBMIT");
+		const button = document.getElementById("search_button");
 		button.disabled = true
 	}
 
